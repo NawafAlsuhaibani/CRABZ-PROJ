@@ -9,6 +9,20 @@
   background-color: grey;
 }
 
+#pageHeader {
+  margin: 0;
+  background-color: #383d3b;
+}
+
+#pageBody {
+  margin: 1em 8em 1em 8em;
+}
+
+#pageFooter {
+  margin: 0;
+  background-color: #383d3b;
+}
+
 .pull-left {
   float: left;
   width: auto;
@@ -21,7 +35,6 @@
 .pull-right {
   float: right;
   width: auto;
-  overflow: auto;
 }
 
 .entry {
@@ -33,6 +46,10 @@
   display:  inline-block;
 }
 
+.block {
+  display:  block;
+}
+
 .center {
     margin-left:  auto;
     margin-right: auto;
@@ -40,10 +57,23 @@
 
 .sectionHeader {
   overflow: auto;
+  background-color: #eee5e9;
 }
 
 .balance {
   margin-top: 0.75em;
+}
+
+.body-content {
+  margin: 1em 0em 0em 0em;
+}
+
+.smallField {
+  width:  50px;
+}
+
+.box {
+  margin: 1em 2.5em 1em 2.5em;
 }
 
 #date-section {
@@ -61,5 +91,5 @@ footer {
 }
 
 h5, h4, h3, h2, h1 {
-  margin: 0.45em;
+
 }
