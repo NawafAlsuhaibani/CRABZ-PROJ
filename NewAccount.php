@@ -20,13 +20,4 @@
     <input type="submit" value="submit">
 
 </form>
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Mike Brehl
- * Date: 2018-02-19
- * Time: 11:36 AM
- */
-?>
+</html>

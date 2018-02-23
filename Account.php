@@ -10,13 +10,13 @@
 
 </head>
 <?php
-
+//Connecting to database
 $con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
 
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysql_connect_error();
 }
-
+//Querying the database for the user's information
 $sql = $con->prepare("SELECT name, userName, email FROM user WHERE userId = ?");
 
 $sql->bind_param("i", $_SESSION['userId']);
@@ -27,7 +27,7 @@ $sql->bind_result($name, $username, $email);
 
 $sql->fetch();
 
-
+//Displaying the user's information
 ?>
 <body>
 <h1>Account Information</h1>
@@ -49,17 +49,6 @@ $sql->fetch();
 
 </table>
 <a href = "NewAccount.php">New Account</a>
-<?php
-/**
- * Created by PhpStorm.
- * User: Mike Brehl
- * Date: 2018-02-16
- * Time: 2:55 PM
- */
-
-
-
-?>
 </body>
 </html>
 
