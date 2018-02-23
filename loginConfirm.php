@@ -14,13 +14,15 @@ $con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-$sql = ("SELECT userName,password FROM user WHERE userName=".$uname.", password=".$$pwd);
+$sql = ("SELECT userName,password FROM user WHERE userName=".$uname." AND password=".$pwd);
 $rst = $con->query($sql);
 $row = mysqli_fetch_array($rst, MYSQLI_ASSOC) ;
-if(!$rst){
-    echo "not there";
-}
 
+if(mysqli_num_rows($rst) ==0 ){
+    echo "not there";
+}else{
+	echo "loged in succesfully";
+}
 $sql->close();
 $con->close();
 
