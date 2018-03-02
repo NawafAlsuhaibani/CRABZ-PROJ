@@ -1,0 +1,161 @@
+/*
+* MAIN PAGE LAYOUT BEGINS
+* These classes set the basic page layout structure
+*/
+  .bodyWrapper, .mainDivWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rightColumn {
+    order: -1;
+  }
+
+  @media (min-width: 768px) {
+    .mainDivWrapper {
+      flex-direction: row;
+      flex: 1;
+    }
+    .mainWrapper {
+      flex: 1;
+    }
+    .rightColumn, .leftColumn {
+      /* 12em is the width of the columns */
+      flex: 0 0 12em;
+    }
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  table {
+    width:  100%;
+    border-collapse: collapse;
+    border: 1px solid antiquewhite;
+  }
+
+  th, td {
+    border: 1px solid antiquewhite;
+    padding:  0.125em;
+  }
+
+  th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      /*background-color: #4CAF50;*/
+      color: white;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  tr:nth-child(even){
+    /*background-color: #f2f2f2;*/
+  }
+
+  section {
+    overflow: auto;
+  }
+/*
+* MAIN PAGE LAYOUT ENDS
+*/
+
+/*
+* FLEXBOX CONTAINERS BEGIN
+* These classes are container classes for laying out content
+*/
+  /* Flex as a row */
+  .flex-row {
+    display:  flex;
+    flex-direction: row;
+  }
+  /* Flex as a column */
+  .flex-col {
+    display:  flex;
+    flex-direction: column;
+  }
+
+  .entry {
+    display:  flex;
+    flex-direction: row;
+    padding: 0.25em;
+    margin: 0.25em;
+  }
+/*
+* FLEXBOX CONTAINERS END
+*/
+
+/*
+* FLEXBOX SUPPORTING CLASSES BEGIN
+* Classes meant to give attributes to flexboxes
+*/
+  /* Put space between items in a flex container */
+  .space-between {
+    display:  flex;
+    justify-content: space-between;
+  }
+
+  /* Suplemental to mainDivWrapper to space page content to a single column layout */
+  .singleColumn-Margin {
+    margin: 3em 6em 3em 6em;
+  }
+
+  /* Small margin for top of flexbox */
+  .margin-top {
+    margin-top: 1em;
+  }
+  /* Small padding for containers */
+  .small-pad {
+    padding:  1em;
+  }
+
+  .small-margin-sides {
+    margin:  0em 0.75em 0em 0.75em;
+  }
+/*
+* FLEXBOX SUPPORTING CLASSES END
+*/
+
+/*
+* SPACING AND POSITIONING CLASSES BEGIN
+*/
+  .inline-block {
+    display:  inline-block;
+  }
+
+  .hidden {
+    display:  none;
+  }
+/*
+* SPACING AND POSITIONING CLASSES END
+*/
+
+/*
+* CSS PAGE AND TEXT COLORS BEGIN
+*/
+  .bg-color-dark {
+    background-color: #333;
+    color:  antiquewhite;
+  }
+
+  .bg-color-light {
+    background-color: dimgray;
+  }
+
+  .text-color-light {
+    color:  antiquewhite;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+/*
+* CSS PAGE AND TEXT COLORS END
+*/
