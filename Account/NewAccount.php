@@ -17,7 +17,7 @@
     <input type="number" step="0.01" name="balance"> <br>
     Institution Number: <br>
     <input type="number" name ="instnum"> <br>
-    <input type="submit" value="submit">
+    <input type="submit" value="submit" name="submit">
 
 </form>
 </html>

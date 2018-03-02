@@ -48,7 +48,9 @@ $sql->fetch();
     </tr>
 
 </table>
-<a href = "NewAccount.php">New Account</a>
+<a href = "NewAccount.php">New Account</a> <br>
+<a href = "EditEmail.php">Edit Email</a> <br>
+<a href = "EditPassword.php">Edit Password</a>
 </body>
 </html>
 
