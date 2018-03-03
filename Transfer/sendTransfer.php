@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('lib/db_credentials.php');
-  include('lib/getTransfers.php');
+  include('../lib/db_credentials.php');
+  include('../lib/getTransfers.php');
   $_SESSION['userId'] = 1;  //  Arbitary value **Assign upon loginPage
   $con = connect();
   //  Redirected to this page so process request first
@@ -43,11 +43,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/layout.css"/>
-    <link rel="stylesheet" href="css/nav-header.css">
-    <script type='text/javascript' src="script/jquery-3.1.1.min.js"></script>
-    <script type='text/javascript' src="script/transfers.js"></script>
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/layout.css"/>
+    <link rel="stylesheet" href="../css/nav-header.css">
+    <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/transfers.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
@@ -55,13 +55,13 @@
       <nav id="headerNav" class="space-between">
         <div>
           <a href="">Home</a>
-          <a href="CurrencyEx.html">Currency exchange</a>
+          <a href="../currency exchnage page/CurrencyEx.html">Currency exchange</a>
           <a href="viewTransfers.php">Transfer</a>
-          <a href="viewTransactions.php">Summary</a>
-          <a href="Account.php">Account</a>
+          <a href="../Transactions/viewTransactions.php">Summary</a>
+          <a href="../Account/Account.php">Account</a>
         </div>
         <div>
-          <a href="login.html">Login</a>
+          <a href="../login/login.html">Login</a>
           <a href="">Sign up</a>
         </div>
       </nav>
