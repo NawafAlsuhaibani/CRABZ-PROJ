@@ -36,8 +36,7 @@
         }else{
             echo "Invalid";
         }
-        $sql->close();
-        $con->close();
+
     }
 ?>
 
@@ -55,3 +54,7 @@
 </form>
 <a href = "Account.php">Back to Account</a>
 </html>
+<?php
+$sql->close();
+$con->close();
+?>
