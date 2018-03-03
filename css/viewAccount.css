@@ -4,6 +4,11 @@
   background-color: grey;
 }
 
+#rightColumn {
+  margin-left: 12em;
+  background-color: grey;
+}
+
 #pageHeader {
   margin: 0;
   background-color: #383d3b;
