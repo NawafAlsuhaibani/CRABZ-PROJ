@@ -1,7 +1,7 @@
 <?php
     session_start();
     $_SESSION['userId'] = 1;
-    $_SESSION['admin'] = true;
+    $_SESSION['admin'] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
