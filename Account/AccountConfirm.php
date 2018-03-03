@@ -70,6 +70,7 @@ if ($valid){
     $sql = $con->prepare("INSERT INTO account (accNum, accType, balance, instNum, ownerId) VALUES (?, ?, ?, ?, ?)");
     $sql->bind_param('iidii',$accnum, $acctype, $balance, $instnum, $_SESSION['userId']);
 
+    $sql->execute();
     echo "Your account has been updated";
 }
 
