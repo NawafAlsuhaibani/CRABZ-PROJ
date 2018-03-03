@@ -3,6 +3,8 @@
   include('lib/db_credentials.php');
   include('lib/getTransfers.php');
   $_SESSION['userId'] = 1;  //  Arbitary value **Assign upon loginPage
+  $_SESSION['sentTransfer'] = false;
+  $_SESSION['hasClaimed'] = false;
 ?>
 <!DOCTYPE html>
 <html>

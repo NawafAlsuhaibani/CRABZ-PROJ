@@ -6,11 +6,11 @@
 
   $con = connect();
   // Check to see if user can accept
-  $sql = "SELECT toAcc, fromAcc, amount FROM transfer, account WHERE tId = ? AND toAcc = accNum AND ownerId = ?";
+  $sql = "SELECT tId, toAcc, fromAcc, amount FROM transfer, account WHERE tId = ? AND toAcc = accNum AND ownerId = ?";
   $stmt = $con->prepare($sql);
   $stmt->bind_param('ii', $_GET['transferId'], $_SESSION['userId']);
   $stmt->execute();
-  $stmt->bind_result($toAcc, $fromAcc, $amount);
+  $stmt->bind_result($tId, $toAcc, $fromAcc, $amount);
   $stmt->fetch();
   if(!$stmt) {
     $transfer = false;
@@ -19,41 +19,43 @@
     $transfer = true;
   $stmt->close();
 
+  if(!$_SESSION['hasClaimed']) {
+    $_SESSION['hasClaimed'] = true;
+    // Check to see if user confirmed
+    if(isset($_POST['submit']) && $_POST['submit'] == 'Claim') {  
+      // Update balance
+      $sql = "UPDATE account SET balance = balance + ? WHERE ownerId = ? AND accNum = ?";
+      $stmt = $con->prepare($sql);
+      $stmt->bind_param('dii',$amount, $_SESSION['userId'], $toAcc);
+      $stmt->execute();
+      $stmt->fetch();
+      $stmt->close();
 
-  // Check to see if user confirmed
-  if(isset($_POST['submit']) && $_POST['submit'] == 'Claim') {
-    // Update balance
-    $sql = "UPDATE account SET balance = balance + ? WHERE ownerId = ? AND accNum = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param('dii',$amount, $_SESSION['userId'], $toAcc);
-    $stmt->execute();
-    $stmt->fetch();
-    $stmt->close();
+      // Close transfer
+      $sql = "UPDATE transfer SET status = 1 WHERE tId = ?";
+      $stmt = $con->prepare($sql);
+      $stmt->bind_param('i', $_GET['transferId']);
+      $stmt->execute();
+      $stmt->fetch();
+      $stmt->close();
+    }
+    else if(isset($_POST['submit']) && $_POST['submit'] == 'Revoke') {
+      // Close transfer
+      $sql = "UPDATE transfer SET status = -1 WHERE tId = ?";
+      $stmt = $con->prepare($sql);
+      $stmt->bind_param('i', $_GET['transferId']);
+      $stmt->execute();
+      $stmt->fetch();
+      $stmt->close();
 
-    // Close transfer
-    $sql = "UPDATE transfer SET status = 1 WHERE tId = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param('i', $_GET['transferId']);
-    $stmt->execute();
-    $stmt->fetch();
-    $stmt->close();
-  }
-  else if(isset($_POST['submit']) && $_POST['submit'] == 'Revoke') {
-    // Close transfer
-    $sql = "UPDATE transfer SET status = -1 WHERE tId = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param('i', $_GET['transferId']);
-    $stmt->execute();
-    $stmt->fetch();
-    $stmt->close();
-
-    // Add funds back to sender
-    $sql = "UPDATE account SET balance = balance + ? WHERE accNum = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param('di',$amount, $fromAcc);
-    $stmt->execute();
-    $stmt->fetch();
-    $stmt->close();
+      // Add funds back to sender
+      $sql = "UPDATE account SET balance = balance + ? WHERE accNum = ?";
+      $stmt = $con->prepare($sql);
+      $stmt->bind_param('di',$amount, $fromAcc);
+      $stmt->execute();
+      $stmt->fetch();
+      $stmt->close();
+    }
   }
 
 ?>
