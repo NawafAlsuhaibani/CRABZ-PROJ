@@ -47,7 +47,6 @@
     <link rel="stylesheet" href="../css/layout.css"/>
     <link rel="stylesheet" href="../css/nav-header.css">
     <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
-    <script type='text/javascript' src="../script/transfers.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
