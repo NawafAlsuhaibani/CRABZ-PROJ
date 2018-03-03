@@ -10,8 +10,8 @@ if (!isset($uname,$pwd)){
 }
 //ceil(log10($number)) is the number's length
 
-//$con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
-$con = mysqli_connect("localhost", "", "", "test");
+$con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
+//$con = mysqli_connect("localhost", "", "", "test");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
