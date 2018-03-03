@@ -111,6 +111,12 @@
   .margin-top {
     margin-top: 1em;
   }
+
+  /* Small margin right-side */
+  .small-margin-right {
+    margin-right: 0.75em;
+  }
+
   /* Small padding for containers */
   .small-pad {
     padding:  1em;
