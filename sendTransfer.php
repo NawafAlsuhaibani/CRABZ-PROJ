@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('db_credentials.php');
-  include('getTransfers.php');
+  include('lib/db_credentials.php');
+  include('lib/getTransfers.php');
   $_SESSION['userId'] = 1;  //  Arbitary value **Assign upon loginPage
 
   //  Redirected to this page so process request first

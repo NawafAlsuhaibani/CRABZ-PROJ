@@ -1,7 +1,7 @@
 <?php /* PHP page variables start here */
   session_start();
-  include('db_credentials.php');
-  include('getTransactions.php');
+  include('lib/db_credentials.php');
+  include('lib/getTransactions.php');
   $_SESSION['userId'] = 1;  //  Arbitary value **Assign upon loginPage
   $setBudget = false;
 ?>
