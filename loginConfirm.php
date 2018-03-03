@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $valid = TRUE;
 $uname = $_REQUEST['uname'];
 $pwd = $_REQUEST['psw'];
@@ -25,9 +25,12 @@ $stmt->bind_result($uname , $pwd);
 $stmt->store_result();
 if($stmt->num_rows==1) {
 	echo "login succesfully";
+	
+	$_SESSION['id']=$uname;
+	echo $_SESSION['id'];
 }
 else {
-	echo "not there";
+	echo "userId or password is not matched";
 }
 //$row = mysqli_fetch_array($rst, MYSQLI_ASSOC) ;
 
