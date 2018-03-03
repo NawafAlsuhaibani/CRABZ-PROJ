@@ -7,18 +7,22 @@
 <title>currencyEx</title>
 </head>
 <body>
-   <nav>
+  <nav id="headerNav" class="space-between">
+    <div>
       <a href="">Home</a>
-      <a href="">Currency exchange</a>
-      <a href="">Transfer</a>
-      <a href="">Summary</a>
-      <a href="">Account</a>
-      <a class="rightanker" href="">Login</a>
-      <a class="rightanker" href="">Sign up</a>
-   </nav>
+      <a href="../currency exchnage page/CurrencyEx.html">Currency exchange</a>
+      <a href="viewTransfers.php">Transfer</a>
+      <a href="../Transactions/viewTransactions.php">Summary</a>
+      <a href="../Account/Account.php">Account</a>
+    </div>
+    <div>
+      <a href="../login/login.html">Login</a>
+      <a href="">Sign up</a>
+    </div>
+  </nav>
 <h2>Currency exchange</h2>
 <main>
-	
+
 		<div>
 		<label for="amount">amount:</label>
 		<input type="number" min="0" value="0" step="0.001" id="amount">
@@ -57,23 +61,23 @@
 		  <script type="text/javascript">
 
 
-		  	 $(document).ready(function(){  
-      $("#btn").click(function(){  
+		  	 $(document).ready(function(){
+      $("#btn").click(function(){
        var from = $("#from option:selected").val();
         var to = $("#to option:selected").val();
         var amount = $("#amount").val();
-           $.ajax({  
-                url:"convert.php",  
-                method:"POST",  
-                data:{from:from ,to:to ,amount:amount ,},  
-                success:function(data){ 
-                     $('#value').html("amount is: "+data);  
-                }  
-           });  
-      });  
- }); 
+           $.ajax({
+                url:"convert.php",
+                method:"POST",
+                data:{from:from ,to:to ,amount:amount ,},
+                success:function(data){
+                     $('#value').html("amount is: "+data);
+                }
+           });
+      });
+ });
   </script>
-	
+
 </main>
 </body>
 </html>
