@@ -1,7 +1,7 @@
 <?php
     session_start();
     $_SESSION['userId'] = 1;
-    $_SESSION['admin'] = true;
+    $_SESSION['admin'] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,7 @@ if($_SESSION['admin'] == false):
 
     $sql->fetch();
 
+    unset($sql);
     //Displaying the user's information
     ?>
     <body>
@@ -48,6 +49,28 @@ if($_SESSION['admin'] == false):
             <td>Email: </td>
             <td><?php echo $email ?></td>
         </tr>
+
+        <tr>
+            <td>Accounts:</td>
+            <td>
+            <?php
+            //This whole block of code finds all the accounts of the logged-in user and prints them out for the user to see
+            $sql = $con->prepare("SELECT accNum FROM account WHERE ownerId = ?");
+
+            $sql->bind_param("i", $_SESSION['userId']);
+
+            $sql->execute();
+
+            $sql->bind_result($accNum);
+
+            while($sql->fetch()):
+            ?>
+            <?php echo $accNum ?>
+            <br>
+            <?php endwhile; ?>
+            </td>
+        </tr>
+
 
     </table>
     <a href = "NewAccount.php">New Account</a> <br>
