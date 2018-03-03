@@ -4,6 +4,7 @@
 		<title>Pay Bills</title>
 		<meta charset="utf-8">
 		<link href="css/payBills.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
 		<header>
@@ -25,20 +26,21 @@
 				<?php 
 				session_start();
 				//connect to database and populate their bills
-				//$connection = mysqli_connect("localhost", "webuser", "", "crabzfake");//connect to dylans local database
-				$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
+				$connection = mysqli_connect("localhost", "", "", "test");//connect to dylans local database
+				//$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
 				$query = mysqli_query($connection, "SELECT * FROM bills WHERE userId=1");//**userId will be changed to who's logged in ID
 				
 				while($row = mysqli_fetch_array($query)){
 					echo '<div class="bill" id="Bill '.$row['billId'].'">';
 					echo '<h6>'.$row['companyName'].'</h6>';
 					echo 'Amount: '.$row['amount'].'';
-					echo '<button type="button" style="float:right;" onclick="selectBill(\'Bill '.$row['billId'].'\')">Select bill</button>';
+					//echo '<button type="button" style="float:right;" onclick="selectBill(\'Bill '.$row['billId'].'\')">Select bill</button>';
+					echo '<input type=checkbox , style = "float:right;">'; // adding a checkbox instead of button.
 					echo '</div>';
+				
 				}
 				mysqli_close($connection);
 				?>
-				
 			</div>
 			
 			<div id="selectPaymentMethod">
@@ -49,8 +51,8 @@
 				  <select name="selectedAccount">
 					<?php 
 						//connect to database and populate their bills
-						//$connection = mysqli_connect("localhost", "webuser", "", "crabzfake");//connect to dylans local database
-						$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
+						$connection = mysqli_connect("localhost", "", "", "test");//connect to dylans local database
+						//$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
 						$query = mysqli_query($connection, "SELECT * FROM account WHERE ownerId=1");//**ownerId will be changed to who's logged in ID
 						
 						while($row = mysqli_fetch_array($query)){
@@ -61,7 +63,7 @@
 				  </select>
 				  <br>
 				  Enter $ Amount:
-				  <input type="text" id="amount" name ="selectedAmount" value="">
+				  <input type="number" id="amount" name ="selectedAmount" value=""> <!--changing type to number -->
 				  <br>
 				  <button type="submit">Submit</button>
 				  <button type="reset">Reset</button>

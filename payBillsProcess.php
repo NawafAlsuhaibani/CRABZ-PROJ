@@ -7,8 +7,8 @@
 	$selectedAccount = $_POST["selectedAccount"];
 	
 		//connect to database to pay the bill
-		//$connection = mysqli_connect("localhost", "webuser", "", "crabzfake");//connect to dylans local database
-		$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
+		$connection = mysqli_connect("localhost", "", "", "test");//connect to dylans local database
+		//$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
 		
 		//get account balance and see if user has enought funds to pay the bill
 		$query = mysqli_query($connection, "SELECT balance FROM account WHERE accNum = " . $selectedAccount);
@@ -23,13 +23,22 @@
 			echo 'Insufficient funds in account';
 		}
 		else{
+			mysql_query("START TRANSACTION"); // START TRANSACTION 
 			//subtract amount from user account
 			$query3 = mysqli_query($connection, "UPDATE account SET balance = balance - " . $selectedAmount . " WHERE accNum = " . $selectedAccount);
 			//subtract amount from user Bill
 			$query4 = mysqli_query($connection, "UPDATE bills SET amount = amount - " . $selectedAmount . " WHERE billId = " . $billId);
 			//add funds to payee account
-			echo 'Bill paid!';
-			echo '<br> <a href="payBills.php">Go back</a>';
+			if ($query3 and $query4) {
+    			mysql_query("COMMIT"); // if $query3 and $query4 both successfully happened then commit them 
+				echo 'Bill paid!!!';
+				echo '<br> <a href="payBills.php">Go back</a>';
+				} else {        
+    				mysql_query("ROLLBACK");// if something happened , rollback to previews state!. 
+				echo 'something happened';
+						}
+			
+			
 		}
 		
 		mysqli_close($connection);
