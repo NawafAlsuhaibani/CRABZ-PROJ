@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['userId'] = 2;
+    $_SESSION['userId'] = 1;
 
     if (isset($_POST['submit'])){
         $valid = TRUE;
@@ -75,9 +75,6 @@
             echo "Your account has been updated";
         }
 
-        $sql->close();
-        $con->close();
-
     }
 
 ?>
@@ -101,3 +98,7 @@
 </form>
 <a href = "Account.php">Back to Account</a>
 </html>
+<?php
+$sql->close();
+$con->close();
+?>
