@@ -55,13 +55,13 @@
       <nav id="headerNav" class="space-between">
         <div>
           <a href="">Home</a>
-          <a href="CurrencyEx.html">Currency exchange</a>
+          <a href="../currency exchnage page/CurrencyEx.html">Currency exchange</a>
           <a href="viewTransfers.php">Transfer</a>
-          <a href="viewTransactions.php">Summary</a>
-          <a href="Account.php">Account</a>
+          <a href="../Transactions/viewTransactions.php">Summary</a>
+          <a href="../Account/Account.php">Account</a>
         </div>
         <div>
-          <a href="login.html">Login</a>
+          <a href="../login/login.html">Login</a>
           <a href="">Sign up</a>
         </div>
       </nav>
