@@ -25,9 +25,10 @@ $stmt->bind_result($uname , $pwd);
 $stmt->store_result();
 if($stmt->num_rows==1) {
 	echo "login succesfully";
-	
+
 	$_SESSION['id']=$uname;
 	echo $_SESSION['id'];
+  echo '<a href="../account/Account.php">Home</a>';
 }
 else {
 	echo "userId or password is not matched";

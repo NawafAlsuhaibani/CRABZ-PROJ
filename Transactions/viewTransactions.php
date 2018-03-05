@@ -1,7 +1,7 @@
 <?php /* PHP page variables start here */
   session_start();
   include('../lib/db_credentials.php');
-  include('../lib/getTransfers.php');
+  include('../lib/getTransactions.php');
   $_SESSION['userId'] = 1;  //  Arbitary value **Assign upon loginPage
   $setBudget = false;
 ?>
@@ -70,7 +70,6 @@
               $stmt->fetch();
               $stmt->close();
             }
-            mysqli_close($con);
            ?>
           <section class="flex-row space-between small-pad bg-color-dark">
             <div>
@@ -207,23 +206,25 @@
                   //  If transaction filter settings are applied build filter SQL
                   if(isset($_GET['minAmt']) && isset($_GET['maxAmt']) && isset($_GET['fromDate']) && isset($_GET['toDate'])) {
                     $stmt = filterSQLTransactions($con, $_GET['orderBy'], $_GET['sortBy'], $_GET['fromDate'], $_GET['toDate'], $_GET['minAmt'], $_GET['maxAmt']);
+
+                    $stmt->execute();
                   }
                   //  Else if Budget setttings are entered do a budget SQL query
                   else if (isset($_GET['budgetAmt'])) {
                     $setBudget = true;
                     $stmt = budgetSQLTransactions($con, $_GET['orderBy'], $_GET['sortBy'], $_GET['fromDate'], $_GET['toDate']);
+
+                    $stmt->execute();
                   }
                   //  Else get a default transaction query
                   else if (!isset($_GET['budgetAmt']) && !isset($_GET['Budget'])) {
                     $sql = "SELECT dateTime, note, amount, transId FROM transaction ORDER BY dateTime Desc";
                     $stmt = $con->prepare($sql);
+                    $stmt->execute();
                   }
                   //  Execute query
-                  $stmt->execute();
-                  if(isset($_GET['budgetAmt']))
-                    $stmt->bind_result($date,$note,$amount,$tId);
-                  else
-                    $stmt->bind_result($date,$note,$amount,$tId);
+
+                  $stmt->bind_result($date,$note,$amount,$tId);
                   //  Loop through rows of result_set and print
                   while($stmt->fetch()) {
                 ?>

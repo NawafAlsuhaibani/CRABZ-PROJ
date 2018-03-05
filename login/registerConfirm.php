@@ -34,6 +34,7 @@ if (!$sql->execute()) {
         echo "<br>";
     }
     echo "Your account has been updated";
+    echo '<a href="../account/Account.php">Home</a>';
 }
 
 $sql->close();

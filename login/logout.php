@@ -1,6 +1,6 @@
 <?php
    session_start();
-   unset($_SESSION['id']);
+   unset($_SESSION['userId']);
    unset($_SESSION["password"]);
 
    echo 'You have cleaned session';

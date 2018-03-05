@@ -29,7 +29,7 @@
         </div>
         <div>
           <a href="../login/login.html">Login</a>
-          <a href="">Sign up</a>
+          <a href="../login/login.html">Sign up</a>
         </div>
       </nav>
     </header>
