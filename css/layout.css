@@ -63,6 +63,14 @@
   section {
     overflow: auto;
   }
+
+  a:link {
+    color:  orange;
+  }
+
+  a:visited {
+    color:  yellow;
+  }
 /*
 * MAIN PAGE LAYOUT ENDS
 */
