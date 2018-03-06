@@ -27,13 +27,14 @@
       </nav>
     </header>
 <!-- Login form starts here -->
+
 		<form action="loginConfirm.php" method="post">
       <div class="position">
       <h2 class="heading">Log in to your CRABZ account</h2>
       <label class="label">Username:</label>
       <input class="input" type="text" placeholder="Enter Username" name="uname" required>
       <label class="label">Password:</label>
-      <input class="input" type="text" placeholder="Enter Password" name="psw" required>
+      <input class="input" type="password" placeholder="Enter Password" name="psw" required>
       <button class="logbt" type="submit">Sign Up</button>
 
   </div>

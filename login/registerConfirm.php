@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $valid = TRUE;
 $userName = $_REQUEST['userName'];
 $password = $_REQUEST['password'];
@@ -27,15 +27,21 @@ $rst = $con->query($sql);
 
 if($valid){
 $sql = $con->prepare("INSERT INTO user (name,userName,password,email) VALUES (?,?,?,?)");
-$sql->bind_param('isss', $name, $userName, $password, $email);
+$sql->bind_param('ssss', $name, $userName, $password, $email);
 
 if (!$sql->execute()) {
         echo $sql->error;
         echo "<br>";
     }
-    echo "Your account has been updated";
+    $stmt = $con->prepare("SELECT userId,userName,password FROM user WHERE userName= ? AND password=?");
+    $stmt->bind_param("ss" , $userName , $password);
+    $stmt->execute();
+    $stmt->bind_result($uId, $uname , $pwd);
+    $stmt->fetch();
+    $_SESSION['userId']=$uId;
+    header("Location: account.php");
 }
-
+$stmt->close();
 $sql->close();
 $con->close();
 
