@@ -11,13 +11,15 @@
 </head>
 <?php
 
-if($_SESSION['admin'] == false):
-    //Connecting to database
-    $con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
+//Connecting to database
+$con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
 
-    if (mysqli_connect_errno()){
-        echo "Failed to connect to MySQL: " . mysql_connect_error();
-    }
+if (mysqli_connect_errno()){
+    echo "Failed to connect to MySQL: " . mysql_connect_error();
+}
+
+if($_SESSION['admin'] == false):
+
     //Querying the database for the user's information
     $sql = $con->prepare("SELECT name, userName, email FROM user WHERE userId = ?");
 
@@ -29,7 +31,7 @@ if($_SESSION['admin'] == false):
 
     $sql->fetch();
 
-    unset($sql);
+    $sql->close();
     //Displaying the user's information
     ?>
     <body>
@@ -79,11 +81,6 @@ if($_SESSION['admin'] == false):
     </body>
 <?php else:
 
-    $con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
-
-    if (mysqli_connect_errno()){
-        echo "Failed to connect to MySQL: " . mysql_connect_error();
-    }
     //Setting up SQL
     $sql = "SELECT * FROM user";
     //Execute query
@@ -119,4 +116,8 @@ if($_SESSION['admin'] == false):
     </table>
     </body>
 </html>
-<?php endif; ?>
+<?php
+endif;
+$sql->close();
+$con->close();
+?>

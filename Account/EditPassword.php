@@ -22,7 +22,8 @@
         $sql->bind_result($rst);
 
         $sql->fetch();
-        unset($sql);
+
+        $sql->close();
         //Checks that the user has entered a password, that it doesn't match their current password, and the two they entered match
         if(!empty($newpass1) && $rst != $newpass1 && $newpass1 == $newpass2){
             echo "Change complete";

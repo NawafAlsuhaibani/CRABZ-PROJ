@@ -22,7 +22,9 @@
         $sql->bind_result($rst);
 
         $sql->fetch();
-        unset($sql);
+
+        $sql->close();
+
         //Checks that the user entered an email, that it doesn't match their current email, and it matches the other one they enetered
         if (!empty($newmail1) && $rst != $newmail1 && $newmail1 == $newmail2) {
             echo "Change complete";

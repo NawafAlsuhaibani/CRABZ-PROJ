@@ -40,7 +40,7 @@
 
         $sql->fetch();
 
-        unset($sql);
+        $sql->close();
         //Checking entered info vs database info
         if (empty($rst)){
             echo "The institution number you have entered is invalid.";
@@ -57,7 +57,7 @@
 
         $sql->fetch();
 
-        unset($sql);
+        $sql->close();
         unset($rst);
         //Checking entered info vs database info
         if (!empty($rst)){
@@ -81,23 +81,42 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <script type="text/javascript">
+        function validateForm(){
+            var accnum = document.forms["NewAccount"]["accnum"].value;
+            var balance = document.forms["NewAccount"]["balance"].value;
+                if (accnum.length != 7){
+                    alert("Account number must be 7 digits long");
+                    return false;
+                }else if(balance <=0){
+                    alert("Balance must be greater than 0");
+                    return false;
+                }else if()
+
+        }
+    </script>
+</head>
 <h1>New Account</h1>
-<form action="NewAccount.php" method="post">
+<body>
+<form name="NewAccount" action="NewAccount.php" onsubmit="return validateForm()"method="post">
 
     Account Number: <br>
-    <input type="number" name = "accnum" maxlength="12" > <br>
+    <input type="number" name = "accnum" maxlength="12" required> <br>
     Account Type: <br>
-    <input type="radio" name="acctype" value=0> Chequing
-    <input type="radio" name="acctype" value=1> Savings <br>
+    <input type="radio" name="acctype" value=0 required> Chequing
+    <input type="radio" name="acctype" value=1 required> Savings <br>
     Balance: <br>
-    <input type="number" step="0.01" name="balance"> <br>
+    <input type="number" step="0.01" name="balance" required> <br>
     Institution Number: <br>
-    <input type="number" name ="instnum"> <br>
+    <input type="number" name ="instnum" required> <br>
     <input type="submit" value="submit" name="submit">
 
 </form>
 <a href = "Account.php">Back to Account</a>
+</body>
 </html>
+
 <?php
 $sql->close();
 $con->close();
