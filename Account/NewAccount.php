@@ -40,7 +40,7 @@
 
         $sql->fetch();
 
-        $sql->close();
+        unset($sql);
         //Checking entered info vs database info
         if (empty($rst)){
             echo "The institution number you have entered is invalid.";
@@ -57,7 +57,7 @@
 
         $sql->fetch();
 
-        $sql->close();
+        unset($sql);
         unset($rst);
         //Checking entered info vs database info
         if (!empty($rst)){
@@ -74,50 +74,63 @@
             $sql->execute();
             echo "Your account has been updated";
         }
-
+        $sql->close();
+        $con->close();
     }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <script type="text/javascript">
-        function validateForm(){
-            var accnum = document.forms["NewAccount"]["accnum"].value;
-            var balance = document.forms["NewAccount"]["balance"].value;
-                if (accnum.length != 7){
-                    alert("Account number must be 7 digits long");
-                    return false;
-                }else if(balance <=0){
-                    alert("Balance must be greater than 0");
-                    return false;
-                }else if()
-
-        }
-    </script>
-</head>
-<h1>New Account</h1>
-<body>
-<form name="NewAccount" action="NewAccount.php" onsubmit="return validateForm()"method="post">
-
-    Account Number: <br>
-    <input type="number" name = "accnum" maxlength="12" required> <br>
-    Account Type: <br>
-    <input type="radio" name="acctype" value=0 required> Chequing
-    <input type="radio" name="acctype" value=1 required> Savings <br>
-    Balance: <br>
-    <input type="number" step="0.01" name="balance" required> <br>
-    Institution Number: <br>
-    <input type="number" name ="instnum" required> <br>
-    <input type="submit" value="submit" name="submit">
-
-</form>
-<a href = "Account.php">Back to Account</a>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/layout.css"/>
+    <link rel="stylesheet" href="../css/nav-header.css">
+    <script type='text/javascript' src="script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="script/transfers.js"></script>
+    <title>CRABZ-View Account Information</title>
+  </head>
+  <body class="bodyWrapper">
+    <header>
+      <nav id="headerNav" class="space-between">
+        <div>
+          <a href="">Home</a>
+          <a href="../currencyExchange/CurrencyEx.html">Currency exchange</a>
+          <a href="../transfers/viewTransfers.php">Transfer</a>
+          <a href="../transactions/viewTransactions.php">Summary</a>
+          <a href="../account/Account.php">Account</a>
+        </div>
+        <div>
+          <a href="../login/login.html">Login</a>
+          <a href="">Sign up</a>
+        </div>
+      </nav>
+    </header>
+    <div class="mainDivWrapper singleColumn-Margin">
+      <main class="mainWrapper">
+        <div class="flex-col small-pad bg-color-dark">
+          <h1 class="text-center">New Account</h1>
+          <form action="NewAccount.php" method="post">
+            Account Number: <br>
+            <input type="number" name = "accnum" maxlength="12" required> <br>
+            Account Type: <br>
+            <input type="radio" name="acctype" value=0 checked="checked"> Chequing
+            <input type="radio" name="acctype" value=1> Savings <br>
+            Balance: <br>
+            <input type="number" step="0.01" name="balance" required> <br>
+            Institution Number: <br>
+            <input type="number" name ="instnum" required> <br>
+            <input type="submit" value="submit" name="submit" required>
+          </form>
+          <a href = "Account.php">Back to Account</a>
+        </div>
+      </main>
+    </div>
+    <footer>
+    </footer>
+  </body>
 </html>
-
 <?php
-$sql->close();
-$con->close();
+
 ?>
