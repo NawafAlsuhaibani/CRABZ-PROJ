@@ -1,0 +1,28 @@
+header{
+	border-bottom: 10px groove white;
+}
+
+.bill h6{
+	
+	border-bottom: 1px dotted black;
+}
+
+.bill{
+	border: 5px outset;
+	margin: 1%;
+}
+
+#billList{
+	float:left;
+	border: 5px solid black;
+	
+}
+
+#selectPaymentMethod{
+	border: 5px solid black;
+	float: left;
+}
+
+footer{
+	clear:both;
+}
