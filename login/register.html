@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/layout.css"/>
+    <link rel="stylesheet" href="css/nav-header.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script type='text/javascript' src="script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="script/transfers.js"></script>
+    <title>CRABZ-View Account Information</title>
+  </head>
+  <body class="bodyWrapper">
+    <header>
+      <nav id="headerNav" class="space-between">
+        <div>
+          <a href="">Home</a>
+          <a href="CurrencyEx.html">Currency exchange</a>
+          <a href="viewTransfers.php">Transfer</a>
+          <a href="viewTransactions.php">Summary</a>
+          <a href="Account.php">Account</a>
+        </div>
+        <div>
+          <a href="login.html">Login</a>
+          <a href="register.html">Sign up</a>
+        </div>
+      </nav>
+    </header>
+<!-- Login form starts here -->
+
+
+
+		<form action="registerConfirm.php" method="post">
+    <div class="position">
+        <h2 class="heading">Signup with CRABZ</h2>
+		  	<label class="label"><b>Username</b></label>
+		    <input class="input" type="text" class="btb" placeholder="Enter Username..." name="userName" required>
+
+		    <label class="label"><b>Password</b></label>
+		    <input class="input"  type="password" placeholder="Enter Password" name="password" required>
+
+		    <label class="label"><b>Confirm Password</b></label>
+		    <input class="input"  type="password" placeholder="Confirm Password" name="password2" required>
+
+		    <label class="label"><b>Name</b></label>
+		    <input class="input"  type="text" class="btb" placeholder="Luke" name="name" required>
+
+		  	<label class="label"><b>Email</b></label>
+		    <input class="input"  type="text" class="btb" placeholder="holy@example.com" name="email" required>
+
+		    <div class="clearfix">
+		      <button type="button" class="canbt">Cancel</button>
+		      <button type="submit" class="logbt">Sign Up</button>
+		    </div>
+
+      </div>
+		</form>
+	  </div>
+  </body>
+
+
+
+ </html>
