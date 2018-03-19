@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['userId'] = 1;
 
     if (isset($_POST['submit'])){
         $valid = TRUE;

@@ -25,14 +25,6 @@
     }
   }
 
-  a:visited {
-    color: green;
-  }
-
-  a:link {
-    color:orange;
-  }
-
   h1 {
     font-size: 3em;
   }
@@ -70,14 +62,6 @@
 
   section {
     overflow: auto;
-  }
-
-  a:link {
-    color:  orange;
-  }
-
-  a:visited {
-    color:  yellow;
   }
 /*
 * MAIN PAGE LAYOUT ENDS

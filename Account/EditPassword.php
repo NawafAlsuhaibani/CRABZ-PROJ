@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['userId'] = 1;
     //If the form has been submitted, this runs to check that everything was submitted correctly
     if (isset($_POST['submit'])){
         //initializing the user's entered passwords

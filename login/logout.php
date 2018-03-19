@@ -1,8 +1,8 @@
 <?php
    session_start();
    unset($_SESSION['userId']);
-   unset($_SESSION["password"]);
+   
 
-   echo 'You have cleaned session';
+   echo 'Logged out succesfully';
    header('Refresh: 2; URL = login.php');
 ?>
