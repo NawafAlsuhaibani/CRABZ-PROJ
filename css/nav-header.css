@@ -20,7 +20,6 @@ nav#headerNav a
 	color: antiquewhite;
 	padding-left: 10px;
 	padding-right: 10px;
-
 }
 nav#headerNav a:hover
 {
@@ -36,6 +35,5 @@ nav#headerNav:hover
 	float: right;
 }
 .main {
-
   	margin: 100px 30px 30px;
 }
