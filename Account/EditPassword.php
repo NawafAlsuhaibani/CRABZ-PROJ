@@ -21,12 +21,13 @@
         $sql->bind_result($rst);
 
         $sql->fetch();
+        $sql->close();
         //Checks that the user has entered a password, that it doesn't match their current password, and the two they entered match
         if(!empty($newpass1) && $rst != $newpass1 && $newpass1 == $newpass2){
             echo "Change complete";
             //Setting their new password
             $sql = $con->prepare("UPDATE user SET password = ? WHERE userId = ?");
-            $sql->bind_param('si', $newpass1,$_SESSION['userId']);
+            $sql->bind_param('sd', $newpass1,$_SESSION['userId']);
             $sql->execute();
             //If their passwords match but it's the same as their current password
         }elseif ($rst == $newpass1 && $newpass1 == $newpass2){
@@ -61,7 +62,7 @@
 
     Enter new password: <br>
     <input type="text" name="newpass1"> <br>
-    Confirm new email: <br>
+    Confirm new password: <br>
     <input type="text" name="newpass2"> <br>
     <input type="submit" value="submit" name="submit"> <br>
 

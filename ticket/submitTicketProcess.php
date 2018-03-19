@@ -26,5 +26,5 @@
 
 	mysqli_close($connection);
 
-	echo '<br> <a href="submitTicket.php">Go back</a>';
+	echo '<br> <a href="../Account/Account.php">Go back</a>';
 ?>

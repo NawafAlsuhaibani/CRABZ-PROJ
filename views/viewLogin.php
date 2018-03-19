@@ -13,7 +13,7 @@
   <body class="bodyWrapper">
     <header id="header"></header>
     <!-- Login form starts here -->
-		<form action="loginConfirm.php" method="post">
+		<form action="../lib/login/loginConfirm.php" method="post">
       <div class="position">
         <h2 class="heading">Log in to your CRABZ account</h2>
         <label class="label">Username:</label>

@@ -28,7 +28,7 @@ $stmt->fetch();
 if($stmt->num_rows==1) {
   $_SESSION['userId']=$uId;
 
-  header("Location: ../Account/account.php");
+  header("Location: ../../Account/Account.php");
 
 }
 else {

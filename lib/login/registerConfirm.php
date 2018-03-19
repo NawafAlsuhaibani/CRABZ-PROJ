@@ -39,7 +39,7 @@ if (!$sql->execute()) {
     $stmt->bind_result($uId, $uname , $pwd);
     $stmt->fetch();
     $_SESSION['userId']=$uId;
-    header("Location: account.php");
+    header("Location: ../../Account/Account.php");
 }
 $stmt->close();
 $sql->close();

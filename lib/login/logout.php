@@ -4,5 +4,5 @@
 
 
    echo 'Logged out succesfully';
-   header('Refresh: 2; URL = /CRABZ-PROJ/views/viewLogin.php');
+   header('Refresh: 2; URL = ../../views/viewLogin.php');
 ?>

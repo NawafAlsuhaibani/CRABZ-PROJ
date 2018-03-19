@@ -2,7 +2,7 @@
     session_start();
     $_SESSION['admin'] = false;
     if(!isset($_SESSION['userId']))
-      header('location: /CRABZ-PROJ/views/viewLogin.php');
+      header('location: ../views/viewLogin.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +85,8 @@ if($_SESSION['admin'] == false):
           <a href = "NewAccount.php">New Account</a> <br>
           <a href = "EditEmail.php">Edit Email</a> <br>
           <a href = "EditPassword.php">Edit Password</a>
+          <a href = "../ticket/reviewTicket.php">View Tickets</a>
+          <a href = "../ticket/submitTicket.php">Submit Ticket</a>
           </div>
         </main>
         <!--

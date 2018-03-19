@@ -1,6 +1,10 @@
 <?php
-require_once ('../connection/config.php');
-$conn = mysqli_connect(DB_HOST, DBUSER, DBPASS, DBNAME);
+//require_once ('../connection/config.php');
+//$conn = mysqli_connect(DB_HOST, DBUSER, DBPASS, DBNAME);
+
+require('../lib/db_credentials.php');
+$con = connect();
+
 $error = mysqli_connect_error();
 if ($error != null)
     {
