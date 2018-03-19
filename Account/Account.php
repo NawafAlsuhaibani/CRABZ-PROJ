@@ -2,7 +2,7 @@
     session_start();
     $_SESSION['admin'] = false;
     if(!isset($_SESSION['userId']))
-      header('location: /CRABZ-PROJ/login/login.php');
+      header('location: /CRABZ-PROJ/views/viewLogin.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

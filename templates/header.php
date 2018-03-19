@@ -3,7 +3,7 @@ session_start();
 ?>
 <nav id="headerNav" class="space-between">
   <div>
-    <a href="/CRABZ-PROJ/index.php">Home</a>
+    <a href="/CRABZ-PROJ/views/index.php">Home</a>
     <a href="/CRABZ-PROJ/currencyExchange/CurrencyEx.php">Currency exchange</a>
     <!-- <a href="/CRABZ-PROJ/transfer/viewTransfers.php">Transfer</a> -->
     <a href="/CRABZ-PROJ/importingcsv/csvimport.php">Import</a>
@@ -12,10 +12,10 @@ session_start();
   </div>
   <div>
   <?php if(!isset($_SESSION['userId'])) { ?>
-    <a href="/CRABZ-PROJ/login/login.php">Login</a>
+    <a href="/CRABZ-PROJ/views/viewLogin.php">Log in</a>
     <a href="">Sign up</a>
   <?php } else { ?>
-    <a href="/CRABZ-PROJ/login/logout.php">Log out</a>
+    <a href="/CRABZ-PROJ/lib/login/logout.php">Log out</a>
   <?php } ?>
   </div>
 </nav>

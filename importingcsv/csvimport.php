@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(!isset($_SESSION['userId']))
-    header('location: /CRABZ-PROJ/login/login.php');
+    header('location: /CRABZ-PROJ/views/viewLogin.php');
 ?>
 <!doctype html>
 <html>

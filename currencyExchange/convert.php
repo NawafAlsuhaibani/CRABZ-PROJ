@@ -1,4 +1,4 @@
-	 <?php  
+	 <?php
         $fr = $_POST["from"];
         $t = $_POST["to"];
         $am = $_POST["amount"];
@@ -8,5 +8,5 @@
 
   echo  $converted;
 
-        
- ?> 
+
+ ?>
