@@ -40,7 +40,8 @@ $(document).ready(function() {
       //  var balance = "<?php echo $_POST['balance']; ?>";
         var csf = str.split(',');
         balance = csf[1];
-        $('#accNum').html(csf[0]);
+        var accNum = csf[0].substring(csf[0].length-3,csf[0].length);
+        $('#accNum').html('******' + accNum);
         $('#balance').html("$" + balance);
         $('#accType').html(csf[2]);
         getTransactions(num, balance);

@@ -72,11 +72,15 @@ if($_SESSION['admin'] == false):
 
                   $sql->execute();
 
+
+
                   $sql->bind_result($accNum);
 
                   while($sql->fetch()):
+                    $accNumSafe = strlen($accNum);
+                    $accNumSafe = substr($accNum, $accNumSafe-3);
                   ?>
-                  <?php echo $accNum ?>
+                  <?php echo "******" . $accNumSafe ?>
                   <br>
                   <?php endwhile; ?>
                   </td>
