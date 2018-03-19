@@ -13,12 +13,16 @@ $database = "crabz";
 $user     = "crabz";
 $password = "88yGu2XF";
 //get connection
+//$mysqli   = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
 $mysqli   = new mysqli("localhost", $user, $password, $user);
+
 if (!$mysqli) {
     die("Connection failed: " . $mysqli->error);
 }
-//query to get data from the table
-$query  = sprintf("SELECT sum(amountCost) as total,month(dateNtime) as month from cvsfileimport where userid = ".$_SESSION['userId']." group by month(dateNtime);");// all year
+if(isset($_GET['mon'])){
+	$mon = $_GET['mon'];
+	//query to get data from the table
+$query  = sprintf("SELECT amountCost as total, `dateNtime` as month from cvsfileimport where month(`dateNtime`)=$mon and userid = ".$_SESSION['userId']." GROUP BY dateNtime ORDER BY `dateNtime`;");// all year
 //$query  = sprintf("SELECT dateNtime, amountCost as total from cvsfileimport order by dateNtime asc limit 10;");
 //execute query
 $result = $mysqli->query($query);
@@ -33,6 +37,8 @@ $result->close();
 $mysqli->close();
 //now print the data
 print json_encode($data);
+}
+
 
 
 
