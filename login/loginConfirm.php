@@ -1,6 +1,10 @@
 <?php
 session_start();
+<<<<<<< HEAD
 $_SESSION['userName'] = $_POST['uname'];
+=======
+$_SESSION['user']=$_POST['uname'];
+>>>>>>> 307b77512e9d1f395765cda181902a51cb070bcb
 $valid = TRUE;
 $uname = $_REQUEST['uname'];
 $pwd = $_REQUEST['psw'];
@@ -27,7 +31,11 @@ $stmt->store_result();
 $stmt->fetch();
 if($stmt->num_rows==1) {
   $_SESSION['userId']=$uId;
+<<<<<<< HEAD
   header("Location: ../Account/account.php");
+=======
+  header("Location: account.php");
+>>>>>>> 307b77512e9d1f395765cda181902a51cb070bcb
 
 }
 else {
