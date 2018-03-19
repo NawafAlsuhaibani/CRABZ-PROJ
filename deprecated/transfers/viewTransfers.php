@@ -26,10 +26,11 @@
           <a href="../transfers/viewTransfers.php">Transfer</a>
           <a href="../transactions/viewTransactions.php">Summary</a>
           <a href="../account/Account.php">Account</a>
+          <a href="../payBills/payBills.php">Pay Bills</a>
         </div>
         <div>
           <a href="../login/login.html">Login</a>
-          <a href="">Sign up</a>
+          <a href="../login/login.html">Sign up</a>
         </div>
       </nav>
     </header>

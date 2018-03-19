@@ -104,22 +104,29 @@
   }
 
   function isClaimable($toAcc, $userId) {
-    $con = connect();
+    $con = mysqli_connect("localhost","crabz","88yGu2XF","crabz");
 
-    $sql = "SELECT accNum FROM account WHERE ownerId = ?";
+    $sql = "SELECT accNum FROM account WHERE ownerId = ? AND accNum = ?";
 
     $stmt = $con->prepare($sql);
 
-    $stmt->bind_param('i', $userId);
+    $stmt->bind_param('dd', $_SESSION['userId'], $toAcc);
 
     $stmt->execute();
 
     $stmt->bind_result($accNum);
 
-    while($stmt->fetch()) {
-      if($accNum == $toAcc)
+    $stmt->fetch();
+
+
+      if($accNum === $toAcc) {
+        $stmt->close();
+
         return true;
-      else
+      }
+      else {
+        $stmt->close();
+
         return false;
     }
 

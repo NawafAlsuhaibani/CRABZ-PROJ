@@ -1,5 +1,10 @@
 <?php
 session_start();
+<<<<<<< HEAD
+$_SESSION['userName'] = $_POST['uname'];
+=======
+$_SESSION['user']=$_POST['uname'];
+>>>>>>> 307b77512e9d1f395765cda181902a51cb070bcb
 $valid = TRUE;
 $uname = $_REQUEST['uname'];
 $pwd = $_REQUEST['psw'];
@@ -15,19 +20,23 @@ $con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-$stmt = $con->prepare("SELECT userName,password FROM user WHERE userName= ? AND password=?");
+$stmt = $con->prepare("SELECT userId,userName,password FROM user WHERE userName= ? AND password=?");
 $stmt->bind_param("ss" , $uname , $pwd);
 //$sql = ("SELECT userName,password FROM user WHERE userName=".$uname." AND password=".$pwd);
 
 //$rst = $con->query($sql);
 $stmt->execute();
-$stmt->bind_result($uname , $pwd);
+$stmt->bind_result($uId, $uname , $pwd);
 $stmt->store_result();
+$stmt->fetch();
 if($stmt->num_rows==1) {
-	echo "login succesfully";
-	
-	$_SESSION['id']=$uname;
-	echo $_SESSION['id'];
+  $_SESSION['userId']=$uId;
+<<<<<<< HEAD
+  header("Location: ../Account/account.php");
+=======
+  header("Location: account.php");
+>>>>>>> 307b77512e9d1f395765cda181902a51cb070bcb
+
 }
 else {
 	echo "userId or password is not matched";

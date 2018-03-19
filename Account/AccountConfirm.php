@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$_SESSION['userId'] = 1;
 
 $valid = TRUE;
 //Get variables from the form on NewAccount

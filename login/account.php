@@ -1,43 +1,53 @@
 <?php
     session_start();
+
     $_SESSION['admin'] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/reset.css"/>
-    <link rel="stylesheet" href="../css/layout.css"/>
-    <link rel="stylesheet" href="../css/nav-header.css">
-    <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
-    <script type='text/javascript' src="../script/template.js"></script>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/layout.css"/>
+    <link rel="stylesheet" href="css/nav-header.css">
+      <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
     <title>CRABZ-Account page</title>
 </head>
 <?php
-
 if($_SESSION['admin'] == false):
     //Connecting to database
     $con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
-
     if (mysqli_connect_errno()){
         echo "Failed to connect to MySQL: " . mysql_connect_error();
     }
     //Querying the database for the user's information
     $sql = $con->prepare("SELECT name, userName, email FROM user WHERE userId = ?");
-
     $sql->bind_param("i", $_SESSION['userId']);
-
     $sql->execute();
-
     $sql->bind_result($name, $username, $email);
-
     $sql->fetch();
-
     unset($sql);
     //Displaying the user's information
     ?>
     <body class="bodyWrapper">
-      <header id="header">
+      <header>
+        <nav id="headerNav" class="space-between">
+          <div>
+            <a href="">Home</a>
+            <a href="../currencyExchange/CurrencyEx.html">Currency exchange</a>
+            <a href="../transfers/viewTransfers.php">Transfer</a>
+            <a href="../transactions/viewTransactions.php">Summary</a>
+            <a href="../account/Account.php">Account</a>
+          </div>
+          <div>
+            <?php if (isset($_SESSION['userId'])){
+              echo "<a href=\"logout.php\">Sign Out</a>";
+            } else{
+            echo "<a href=\"../login/login.html\">Login</a>";
+            echo "<a href=\"register.html\">Sign up</a>";}
+            ?>
+          </div>
+        </nav>
       </header>
       <div class="mainDivWrapper singleColumn-Margin">
         <main class="mainWrapper">
@@ -65,13 +75,9 @@ if($_SESSION['admin'] == false):
                   <?php
                   //This whole block of code finds all the accounts of the logged-in user and prints them out for the user to see
                   $sql = $con->prepare("SELECT accNum FROM account WHERE ownerId = ?");
-
                   $sql->bind_param("i", $_SESSION['userId']);
-
                   $sql->execute();
-
                   $sql->bind_result($accNum);
-
                   while($sql->fetch()):
                   ?>
                   <?php echo $accNum ?>
@@ -96,9 +102,7 @@ if($_SESSION['admin'] == false):
       </footer>
           </body>
 <?php else:
-
     $con = new mysqli("localhost", "crabz", "88yGu2XF", "crabz");
-
     if (mysqli_connect_errno()){
         echo "Failed to connect to MySQL: " . mysql_connect_error();
     }
@@ -109,7 +113,6 @@ if($_SESSION['admin'] == false):
     //Seek to beginning of results
     $rst->data_seek(0);
     //Get page variables
-
 ?>
     <body>
     <h1>User Accounts</h1>
@@ -122,7 +125,6 @@ if($_SESSION['admin'] == false):
         <?php
         //Looping through the rows of users and printing them out in a table
         while($row = $rst->fetch_assoc()):
-
         $userid = $row['userId'];
         $username = $row['name'];
         $useremail = $row['email'];
