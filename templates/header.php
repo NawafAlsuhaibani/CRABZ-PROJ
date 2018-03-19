@@ -6,7 +6,7 @@ session_start();
     <a href="/CRABZ-PROJ/index.html">Home</a>
     <a href="/CRABZ-PROJ/currencyExchange/CurrencyEx.html">Currency exchange</a>
     <!-- <a href="/CRABZ-PROJ/transfer/viewTransfers.php">Transfer</a> -->
-    <a href="/CRABZ-PROJ/transactions/viewTransactions.html">Transactions</a>
+    <a href="/CRABZ-PROJ/views/viewTransactions.html">Transactions</a>
     <a href="/CRABZ-PROJ/account/Account.php">Account</a>
   </div>
   <div>

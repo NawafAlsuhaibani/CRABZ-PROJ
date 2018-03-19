@@ -18,7 +18,7 @@ $(document).ready(function() {
   function getAccounts() {
     $.ajax({
       type: 'post',
-      url:  '/CRABZ-PROJ/Transactions/getAccounts.php',
+      url:  '/CRABZ-PROJ/lib/transactions/getAccounts.php',
       success: function (data) {
         $('#accounts').html(data);
         num = $("#accounts option:first").val();
@@ -33,7 +33,7 @@ $(document).ready(function() {
   function getAccountInfo() {
     $.ajax({
       type: 'post',
-      url:  '/CRABZ-PROJ/Transactions/getAccountInfo.php',
+      url:  '/CRABZ-PROJ/lib/transactions/getAccountInfo.php',
       data: {accNum: num},
       //dataType: 'text',
       success: function(str) {
@@ -60,7 +60,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'post',
       data: {accNum: num, balance: balance},
-      url:  '/CRABZ-PROJ/Transactions/getAllTransactions.php',
+      url:  '/CRABZ-PROJ/lib/transactions/getAllTransactions.php',
       success: function(results) {
         $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
         $('#transactionTable').append(results);
@@ -77,7 +77,7 @@ $(document).ready(function() {
             datefrom:  $('input[name=fromDate]').val(), dateto:  $('input[name=toDate]').val(),
             amtlower:  $('input[name=minAmt]').val(), amtupper:  $('input[name=maxAmt]').val()
           },
-      url:  '/CRABZ-PROJ/Transactions/filterTransactions.php',
+      url:  '/CRABZ-PROJ/lib/transactions/filterTransactions.php',
       success: function(results) {
         $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
         $('#transactionTable').append(results);
@@ -92,7 +92,7 @@ $(document).ready(function() {
             budgetAmt: $('input[name=budgetAmt]').val(), datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(),
             balance: balance, accNum: num
             },
-      url:  '/CRABZ-PROJ/Transactions/filterTransactions.php',
+      url:  '/CRABZ-PROJ/lib/transactions/filterTransactions.php',
       success:  function(results) {
         budget = $('input[name=budgetAmt]').val();
         $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
@@ -108,7 +108,7 @@ $(document).ready(function() {
       data: {
             datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(), accNum: num
             },
-      url:  '/CRABZ-PROJ/Transactions/getSpent.php',
+      url:  '/CRABZ-PROJ/lib/transactions/getSpent.php',
       success:  function(results) {
         $('#budgetSpent').html(results);
         $('#budgetLeft').html(budget - results);

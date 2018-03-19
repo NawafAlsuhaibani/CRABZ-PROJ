@@ -86,26 +86,12 @@
     <link rel="stylesheet" href="../css/reset.css"/>
     <link rel="stylesheet" href="../css/layout.css"/>
     <link rel="stylesheet" href="../css/nav-header.css">
-    <script type='text/javascript' src="script/jquery-3.1.1.min.js"></script>
-    <script type='text/javascript' src="script/transfers.js"></script>
+    <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/template.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
-    <header>
-      <nav id="headerNav" class="space-between">
-        <div>
-          <a href="">Home</a>
-          <a href="../currencyExchange/CurrencyEx.html">Currency exchange</a>
-          <a href="../transfers/viewTransfers.php">Transfer</a>
-          <a href="../transactions/viewTransactions.php">Summary</a>
-          <a href="../account/Account.php">Account</a>
-          <a href="../payBills/payBills.php">Pay Bills</a>
-        </div>
-        <div>
-          <a href="../login/login.html">Login</a>
-          <a href="">Sign up</a>
-        </div>
-      </nav>
+    <header id="header">
     </header>
     <div class="mainDivWrapper singleColumn-Margin">
       <main class="mainWrapper">

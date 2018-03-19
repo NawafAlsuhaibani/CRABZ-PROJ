@@ -3,7 +3,7 @@
   //  Start the session
   session_start();
 
-  require('/CRABZ-PROJ/lib/db_credentials.php');
+  require('../db_credentials.php');
 
   //  Get DB con
   $con = connect();

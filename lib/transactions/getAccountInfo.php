@@ -2,7 +2,7 @@
 
   session_start();
 
-  require('/CRABZ-PROJ/lib/db_credentials.php');
+  require('../db_credentials.php');
 
   if(isset($_POST['accNum'])) {
     $sql = "SELECT accNum, balance, accType, instNum, ownerId FROM account WHERE ownerId = ? AND accNum = ?";
