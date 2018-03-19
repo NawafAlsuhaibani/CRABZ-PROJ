@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/reset.css"/>
-    <link rel="stylesheet" href="css/layout.css"/>
-    <link rel="stylesheet" href="css/nav-header.css">
+    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/layout.css"/>
+    <link rel="stylesheet" href="../css/nav-header.css">
     <link rel="stylesheet" href="css/login.css">
-    <script type='text/javascript' src="script/jquery-3.1.1.min.js"></script>
-    <script type='text/javascript' src="script/transfers.js"></script>
+    <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/template.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
@@ -22,7 +22,7 @@
       <input class="input" type="text" placeholder="Enter Username" name="uname" required>
       <label class="label">Password:</label>
       <input class="input" type="password" placeholder="Enter Password" name="psw" required>
-      <button class="logbt" type="submit">Sign Up</button>
+      <button class="logbt" type="submit">Sign In</button>
 
   </div>
 		  </form>
