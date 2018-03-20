@@ -1,19 +1,14 @@
 <?php
     session_start();
     $_SESSION['admin'] = false;
-    if(!isset($_SESSION['userId']))
-      header('location: ../views/viewLogin.php');
+  if(!isset($_SESSION['userId']))
+     header('location: ../views/viewLogin.php');
 ?>
 <?php
-require('../lib/db_credentials.php');
-$host     = "localhost";
-$database = "crabz";
-$user     = "crabz";
-$password = "88yGu2XF";
+
 //get connection
 //$conn  = mysqli_connect($host, $user, $password, $database);
-//$conn = new mysqli("localhost", "root", "", "crabz");
-$conn = connect();
+$conn = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 $error = mysqli_connect_error();
 if ($error != null)
     {
@@ -32,7 +27,7 @@ if (isset($_POST['import']))
         }
     if ($_FILES["file1"]["size"] > 0)
         {
-       $sql = "LOAD DATA LOCAL INFILE '$filename' INTO TABLE cvsfileimport FIELDS TERMINATED BY ',' set userid = ".$_SESSION['userId']." ";
+       $sql = "LOAD DATA LOCAL INFILE '$filename' INTO TABLE cvsfileimport FIELDS TERMINATED BY ',' set userid = ".$_SESSION['userId']."; ";
 		//	$sql = "select * from cvsfileimport ; ";
         if ($conn->query($sql) === TRUE)
             {
@@ -44,4 +39,7 @@ if (isset($_POST['import']))
             }
         }
     }
+else {
+	echo "error";
+}
 ?>
