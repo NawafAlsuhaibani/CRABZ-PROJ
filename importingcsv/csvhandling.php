@@ -13,7 +13,7 @@ $password = "88yGu2XF";
 //get connection
 //$conn  = mysqli_connect($host, $user, $password, $database);
 //$conn = new mysqli("localhost", "root", "", "crabz");
-$con = connect();
+$conn = connect();
 $error = mysqli_connect_error();
 if ($error != null)
     {
