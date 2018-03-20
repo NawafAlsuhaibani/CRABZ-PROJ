@@ -1,7 +1,8 @@
 <?php
     session_start();
-    $_SESSION['userId'] = 1;
     $_SESSION['admin'] = false;
+    if(!isset($_SESSION['userId']))
+      header('location: ../views/viewLogin.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,8 @@
     <link rel="stylesheet" href="../css/reset.css"/>
     <link rel="stylesheet" href="../css/layout.css"/>
     <link rel="stylesheet" href="../css/nav-header.css">
-      <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/template.js"></script>
     <title>CRABZ-Account page</title>
 </head>
 <?php
@@ -37,20 +39,7 @@ if($_SESSION['admin'] == false):
     //Displaying the user's information
     ?>
     <body class="bodyWrapper">
-      <header>
-        <nav id="headerNav" class="space-between">
-          <div>
-            <a href="">Home</a>
-            <a href="../currencyExchange/CurrencyEx.html">Currency exchange</a>
-            <a href="../transfers/viewTransfers.php">Transfer</a>
-            <a href="../transactions/viewTransactions.php">Summary</a>
-            <a href="../account/Account.php">Account</a>
-          </div>
-          <div>
-            <a href="../login/login.html">Login</a>
-            <a href="">Sign up</a>
-          </div>
-        </nav>
+      <header id="header">
       </header>
       <div class="mainDivWrapper singleColumn-Margin">
         <main class="mainWrapper">
@@ -83,11 +72,15 @@ if($_SESSION['admin'] == false):
 
                   $sql->execute();
 
+
+
                   $sql->bind_result($accNum);
 
                   while($sql->fetch()):
+                    $accNumSafe = strlen($accNum);
+                    $accNumSafe = substr($accNum, $accNumSafe-3);
                   ?>
-                  <?php echo $accNum ?>
+                  <?php echo "******" . $accNumSafe ?>
                   <br>
                   <?php endwhile; ?>
                   </td>
@@ -96,6 +89,8 @@ if($_SESSION['admin'] == false):
           <a href = "NewAccount.php">New Account</a> <br>
           <a href = "EditEmail.php">Edit Email</a> <br>
           <a href = "EditPassword.php">Edit Password</a>
+          <a href = "../ticket/reviewTicket.php">View Tickets</a>
+          <a href = "../ticket/submitTicket.php">Submit Ticket</a>
           </div>
         </main>
         <!--

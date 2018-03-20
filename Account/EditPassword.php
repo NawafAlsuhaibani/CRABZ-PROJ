@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['userId'] = 1;
     //If the form has been submitted, this runs to check that everything was submitted correctly
     if (isset($_POST['submit'])){
         //initializing the user's entered passwords
@@ -22,13 +21,13 @@
         $sql->bind_result($rst);
 
         $sql->fetch();
-        unset($sql);
+        $sql->close();
         //Checks that the user has entered a password, that it doesn't match their current password, and the two they entered match
         if(!empty($newpass1) && $rst != $newpass1 && $newpass1 == $newpass2){
             echo "Change complete";
             //Setting their new password
             $sql = $con->prepare("UPDATE user SET password = ? WHERE userId = ?");
-            $sql->bind_param('si', $newpass1,$_SESSION['userId']);
+            $sql->bind_param('sd', $newpass1,$_SESSION['userId']);
             $sql->execute();
             //If their passwords match but it's the same as their current password
         }elseif ($rst == $newpass1 && $newpass1 == $newpass2){
@@ -36,7 +35,8 @@
         }else{
             echo "Invalid";
         }
-
+        $sql->close();
+        $con->close();
     }
 ?>
 
@@ -48,23 +48,11 @@
     <link rel="stylesheet" href="../css/layout.css"/>
     <link rel="stylesheet" href="../css/nav-header.css">
     <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
+    <script type='text/javascript' src="../script/template.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
-    <header>
-      <nav id="headerNav" class="space-between">
-        <div>
-          <a href="">Home</a>
-          <a href="../currencyExchange/CurrencyEx.html">Currency exchange</a>
-          <a href="../transfers/viewTransfers.php">Transfer</a>
-          <a href="../transactions/viewTransactions.php">Summary</a>
-          <a href="../account/Account.php">Account</a>
-        </div>
-        <div>
-          <a href="../login/login.html">Login</a>
-          <a href="">Sign up</a>
-        </div>
-      </nav>
+    <header id="header">
     </header>
     <div class="mainDivWrapper singleColumn-Margin">
       <main class="mainWrapper">
@@ -74,7 +62,7 @@
 
     Enter new password: <br>
     <input type="text" name="newpass1"> <br>
-    Confirm new email: <br>
+    Confirm new password: <br>
     <input type="text" name="newpass2"> <br>
     <input type="submit" value="submit" name="submit"> <br>
 
@@ -95,6 +83,6 @@
 </html>
 
 <?php
-$sql->close();
-$con->close();
+
+
 ?>

@@ -10,15 +10,15 @@
 		</header>
 		<?php
 			//if user has an admin account (boolean check?) we allow them see these links
-			
-			$connection = mysqli_connect("localhost", "webuser", "", "crabzfake");//connect to dylans local database
-			//$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
-			
+
+			//$connection = mysqli_connect("localhost", "webuser", "", "crabzfake");//connect to dylans local database
+			$connection = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");//connect to real database
+
 			$query = mysqli_query($connection, "SELECT * FROM ticket");
 			$query2 = mysqli_query($connection, "SELECT * FROM ticket");
-			
+
 			echo('TICKETS <br>');
-			
+
 			echo('<table>');
 			echo('<tr><th>Username</th><th>Email</th><th>Title of Ticket</th><th>Ticket Content</th></tr>');
 			while($row = mysqli_fetch_array($query)){
@@ -29,7 +29,7 @@
 			echo('</table>');
 			//start populating the feedback
 			echo('FEEDBACK <br>');
-			
+
 			echo('<table>');
 			echo('<tr><th>Username</th><th>Email</th><th>Title of Comment</th><th>Feedback Content</th></tr>');
 			while($row = mysqli_fetch_array($query2)){
@@ -38,13 +38,13 @@
 				}
 			}
 			echo('</table>');
-			
-			
+
+			echo '<br> <a href="../Account/Account.php">Go back</a>';
 		?>
-		
+
 		<footer>
 		Copyright © 2018
 		</footer>
-		
+
 	</body>
 </html>
