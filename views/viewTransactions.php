@@ -29,6 +29,13 @@
             <div class="flex-col">
               <select id="accounts">
               </select>
+              <br><br><label>Show</label>
+              <select id="limit">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="all">All</option>
+              </select>
             </div>
             <div class="flex-col">
               <div class="flex-row">

@@ -60,7 +60,7 @@ $(document).ready(function() {
   function getTransactions() {
     $.ajax({
       type: 'post',
-      data: {accNum: num, balance: balance},
+      data: {accNum: num, balance: balance, limit:$('#limit').val()},
       url:  '../lib/transactions/getAllTransactions.php',
       success: function(results) {
         $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
@@ -76,7 +76,8 @@ $(document).ready(function() {
       data: {filterMethod: 'transaction', bindMethod: 'date', sortBy: $('select[name=sortBy]').val(), orderBy: $('select[name=orderBy]').val(),
             accNum: num, balance: balance,
             datefrom:  $('input[name=fromDate]').val(), dateto:  $('input[name=toDate]').val(),
-            amtlower:  $('input[name=minAmt]').val(), amtupper:  $('input[name=maxAmt]').val()
+            amtlower:  $('input[name=minAmt]').val(), amtupper:  $('input[name=maxAmt]').val(),
+            limit:$('#limit').val()
           },
       url:  '../lib/transactions/filterTransactions.php',
       success: function(results) {
@@ -141,8 +142,6 @@ $(document).ready(function() {
     e.preventDefault();
     filterBudget();
   });
-
-  $('')
 
   //  Populate account list initially
   getAccounts();

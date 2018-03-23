@@ -7,7 +7,7 @@ session_start();
     <a href="../views/viewCurrency.php">Currency exchange</a>
     <!-- <a href="/CRABZ-PROJ/transfer/viewTransfers.php">Transfer</a> -->
     <a href="../importingcsv/csvimport.php">Import</a>
-    <a href="../views/viewTransactions.php">Transactions</a>
+    <a href="../views/viewTransactions.php">Advanced View</a>
     <a href="../views/viewAccount.php">Account</a>
   </div>
   <div>

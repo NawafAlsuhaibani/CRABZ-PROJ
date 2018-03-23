@@ -50,6 +50,23 @@
       break;
   }
 
+  if(isset($_POST['limit'])){
+    switch($_POST['limit']) {
+      case '25':
+        $sql = $sql . " LIMIT 25";
+        break;
+      case '50':
+        $sql = $sql . " LIMIT 50";
+        break;
+      case '100':
+        $sql = $sql . " LIMIT 100";
+        break;
+      case 'all':
+        $sql = $sql;
+        break;
+    }
+  }
+
   //  Assemble stmt
   $stmt = $con->prepare($sql);
 
