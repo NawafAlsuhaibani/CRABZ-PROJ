@@ -35,7 +35,7 @@ $stmt->close();
 if($valid){
 
   $sql = $con->prepare("INSERT INTO user (name,userName,password,email) VALUES (?,?,?,?)");
-  $password = password_hash($password, PASSWORD_DEFAULT);
+  $password = md5($password);
   $sql->bind_param('ssss', $name, $userName, $password, $email);
 
   if (!$sql->execute()) {

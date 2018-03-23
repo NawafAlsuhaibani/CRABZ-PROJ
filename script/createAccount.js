@@ -7,6 +7,7 @@ function createAccount(accNum, instNum, balance, accType) {
       alert(data);
     },
     error: function(xhr, status, err) {
+      alert(xhr);
       alert(status);
       alert(err);
     }

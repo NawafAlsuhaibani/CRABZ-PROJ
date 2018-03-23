@@ -64,7 +64,7 @@
         if ($valid){
             $sql = $con->prepare("INSERT INTO account (accNum, accType, balance, instNum, ownerId, lastdigs) VALUES (?, ?, ?, ?, ?, ?)");
             $lastdigs = substr($accnum, strlen($accnum)-3);
-            $hash = password_hash($accnum, PASSWORD_DEFAULT);
+            $hash = md5($accnum);
             $sql->bind_param('sidsii',$hash, $acctype, $balance, $instnum, $_SESSION['userId'], $lastdigs);
 
             if($sql->execute())

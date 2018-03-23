@@ -2,7 +2,7 @@
 session_start();
 $valid = TRUE;
 $uname = $_REQUEST['uname'];
-$pwd = $_REQUEST['psw'];
+$pwd = md5($_REQUEST['psw']);
 if (!isset($uname,$pwd)){
     echo "Please complete all fields.";
     echo "<br>";
@@ -26,11 +26,14 @@ $stmt->store_result();
 $stmt->fetch();
 if($stmt->num_rows==1) {
   echo "inside";
-  if(password_verify($pwd, $pwdsql)) {
+  //if($pwd == $pwdsql) {
     $_SESSION['userId']=$uId;
+    $stmt->close();
+    $con->close();
+      header("Location: ../../views/viewAccount.php");
+//  }
 
-    header("Location: ../../views/viewAccount.php");
-  }
+
 
 }
 else {
