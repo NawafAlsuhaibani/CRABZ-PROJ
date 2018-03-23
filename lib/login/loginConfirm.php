@@ -26,12 +26,12 @@ $stmt->store_result();
 $stmt->fetch();
 if($stmt->num_rows==1) {
   echo "inside";
-  //if($pwd == $pwdsql) {
+  if($pwd == $pwdsql) {
     $_SESSION['userId']=$uId;
     $stmt->close();
     $con->close();
       header("Location: ../../views/viewAccount.php");
-//  }
+  }
 
 
 

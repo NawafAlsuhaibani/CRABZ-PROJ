@@ -6,7 +6,7 @@
   $con = connect();
   $sql = "UPDATE user SET password = ? WHERE userId = ?";
   $stmt = $con->prepare($sql);
-  $hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+  $hash = md5($_POST['pass']);
   $stmt->bind_param('si',$hash,$_SESSION['userId']);
 
   if($stmt->execute())

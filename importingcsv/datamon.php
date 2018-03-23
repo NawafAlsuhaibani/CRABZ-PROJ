@@ -22,7 +22,7 @@ if (!$mysqli) {
 if(isset($_GET['mon'])){
 	$mon = $_GET['mon'];
 	//query to get data from the table
-$query  = sprintf("SELECT amountCost as total, `dateNtime` as month from cvsfileimport where month(`dateNtime`)=$mon and userid = ".$_SESSION['userId']." GROUP BY dateNtime ORDER BY `dateNtime`;");// all year
+$query  = sprintf("SELECT amountCost as total, `dateNtime` as month from cvsfileimport where month(`dateNtime`)=$mon and accountnum = "$_GET['acc']." GROUP BY dateNtime ORDER BY `dateNtime`;");// all year
 //$query  = sprintf("SELECT dateNtime, amountCost as total from cvsfileimport order by dateNtime asc limit 10;");
 //execute query
 $result = $mysqli->query($query);

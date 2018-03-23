@@ -6,7 +6,7 @@
 
 //  if(isset($_POST['accNum']) && isset($_POST['balance'])) {
     $con = connect();
-    $sql = "SELECT dateNtime, amountCost, paytype, userid, csvid FROM cvsfileimport WHERE userid = ? ORDER BY dateNtime Desc";
+    $sql = "SELECT dateNtime, amountCost, paytype, accountnum, csvid FROM cvsfileimport WHERE accountnum = ? ORDER BY dateNtime Desc";
     if(isset($_POST['limit'])){
       switch($_POST['limit']) {
         case '25':
@@ -24,7 +24,7 @@
       }
     }
     $stmt = $con->prepare($sql);
-    $stmt->bind_param('i',$_SESSION['userId']);
+    $stmt->bind_param('i',$_POST['accNum']);
     $stmt->execute();
 
     $stmt->bind_result($date,$amount,$paytype,$userid, $csvid);

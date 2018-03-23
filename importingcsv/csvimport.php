@@ -46,6 +46,7 @@
 			$.ajax({
 		url: "data.php",
 		method: "GET",
+    data: {acc:$('#accounts').val()},
 		success: function(data) {
 			createTableByJqueryEach(data);
 			console.log(data);
@@ -93,7 +94,7 @@
 			$.ajax({
 		url: "datamon.php",
 		method: "GET",
-		data: {mon : mon},
+		data: {mon : mon, acc:$('#accounts').val()},
 		success: function(data) {
 		createTableByJqueryEach(data);
 
@@ -214,7 +215,7 @@
                     <button id="sh" class="btndiv" name="sh">Go</button>
            <button id="barBtn" class="btndiv">bar chart</button>
           <button id="pieBtn" class="btndiv">pie chart</button>
-          <button id="tableBtn" class="btndiv">table</button>
+          <!-- <button id="tableBtn" class="btndiv">table</button> -->
 
                 </div>
             </section>

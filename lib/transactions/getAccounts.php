@@ -8,7 +8,7 @@
     $sql = "SELECT * FROM account WHERE ownerId = ?";
     $con = connect();
     $stmt = $con->prepare($sql);
-    $stmt->bind_param('d',$_SESSION['userId']);
+    $stmt->bind_param('i',$_SESSION['userId']);
     $stmt->execute();
     $stmt->bind_result($accNum, $balance, $accType, $ownerId, $instNum, $lastdigs, $id);
   //  $list = array();
@@ -17,7 +17,6 @@
       echo "<option value=\"$id\">*****" . $lastdigs . " $" . $balance . "</option>";
     //array_push('value' => $accNum, 'text' => $accType . ' $' . $balance);
     }
-    $stmt->free_results();
     $stmt->close();
     $con->close();
 

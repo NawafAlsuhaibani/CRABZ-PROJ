@@ -15,8 +15,8 @@
     $stmt->bind_result($hash);
     //  If match found
     if($stmt->fetch()) {
-
-      if(password_verify($_POST['pass'], $hash))
+      $pass = md5($_POST['pass']);
+      if($pass == $hash)
         echo "true";
       else
         echo "false";

@@ -52,7 +52,7 @@
         $sql->execute();
 
         while($sql->fetch()) {
-          if(password_verify($accnum, $hashacc) && strcmp(strval(intval($instnum)), $instNum)) {
+          if(md5($accnum) == $hashacc && strcmp(strval(intval($instnum)), $instNum)) {
             echo "This account already exists";
             $valid = false;
           }

@@ -31,15 +31,18 @@ if (isset($_POST['import']) && isset($_POST['accounts']))
 		//	$sql = "select * from cvsfileimport ; ";
         if ($conn->query($sql) === TRUE)
             {
-            echo "new data inserted $filetype";
+            echo "new data inserted";
+            header("Refresh: 2; URL = ../importingcsv/csvimport.php");
             }
           else
             {
-            echo "error inserting the data" . "<br />" . $conn->error;
+            echo "error inserting the data" . "<br />";
+            header("Refresh: 2; URL = ../importingcsv/csvimport.php");
             }
         }
     }
 else {
 	echo "error";
+  header("Refresh: 2; URL = ../importingcsv/csvimport.php");
 }
 ?>

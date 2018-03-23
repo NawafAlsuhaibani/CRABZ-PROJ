@@ -4,10 +4,16 @@ function checkPassword(pass) {
     url: '../lib/account/checkPassword.php',
     data: {pass:pass},
     success: function(data) {
-      if(data === 'true')
+      if(data === 'true') {
         changeEmail($('input[name=email]').val());
-      else
+        $('input[name=email]').val("");
+        $('input[name=password]').val("");
+      }
+      else {
         alert("Password does not match");
+        $('input[name=email]').val("");
+        $('input[name=password]').val("");
+      }
     }
   })
 }
@@ -27,9 +33,8 @@ $(document).ready(function() {
 
   $('#changeEmailForm').submit(function(e) {
     e.preventDefault();
+    alert($('input[name=email]').val());
     checkPassword($('input[name=password]').val());
-    $('input[name=email]').val("");
-    $('input[name=password]').val("");
   });
 
 });

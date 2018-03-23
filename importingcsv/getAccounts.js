@@ -5,8 +5,6 @@ function getAccounts() {
     success: function (data) {
       $('#accounts').html(data);
       num = $("#accounts option:first").val();
-      getAccountInfo(num);
-      getTransactions(num);
     }
   })
 }

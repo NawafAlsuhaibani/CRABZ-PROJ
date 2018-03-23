@@ -5,6 +5,9 @@ function changePass(pass) {
     data: {pass:pass},
     success: function(data) {
       alert(data);
+      $('input[name=oldpass]').val("");
+      $('input[name=newpass1]').val("");
+      $('input[name=newpass2]').val("");
     }
   })
 }
@@ -35,9 +38,6 @@ $(document).ready(function() {
     }
     else {
       checkPassword(oldPass, pass1);
-      $('input[name=oldpass]').val("");
-      $('input[name=newpass1]').val("");
-      $('input[name=newpass2]').val("");
     }
   })
 
