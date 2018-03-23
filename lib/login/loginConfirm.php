@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['userName'] = $_POST['uname'];
 $valid = TRUE;
 $uname = $_REQUEST['uname'];
 $pwd = $_REQUEST['psw'];

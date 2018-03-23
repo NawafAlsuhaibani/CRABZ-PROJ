@@ -22,28 +22,41 @@ $con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-$sql = "SELECT userId AS lastId FROM user";
-$rst = $con->query($sql);
+$sql = "SELECT userName FROM user WHERE userName = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param('s', $userName);
+$stmt->execute();
 
-if($valid){
-$sql = $con->prepare("INSERT INTO user (name,userName,password,email) VALUES (?,?,?,?)");
-$password = password_hash($password, PASSWORD_DEFAULT);
-$sql->bind_param('ssss', $name, $userName, $password, $email);
-
-if (!$sql->execute()) {
-        echo $sql->error;
-        echo "<br>";
-    }
-    $stmt = $con->prepare("SELECT userId FROM user WHERE userName = ?");
-    $stmt->bind_param("s" , $userName);
-    $stmt->execute();
-    $stmt->bind_result($uId);
-    $stmt->fetch();
-    $_SESSION['userId']=$uId;
-    header("Location: ../../views/viewAccount.php");
+if($stmt->fetch()) {
+  $valid = FALSE;
 }
 $stmt->close();
-$sql->close();
-$con->close();
+
+if($valid){
+
+  $sql = $con->prepare("INSERT INTO user (name,userName,password,email) VALUES (?,?,?,?)");
+  $password = password_hash($password, PASSWORD_DEFAULT);
+  $sql->bind_param('ssss', $name, $userName, $password, $email);
+
+  if (!$sql->execute()) {
+    echo $sql->error;
+    echo "<br>";
+  }
+
+  $stmt = $con->prepare("SELECT userId FROM user WHERE userName = ?");
+  $stmt->bind_param("s" , $userName);
+  $stmt->execute();
+  $stmt->bind_result($uId);
+  $stmt->fetch();
+  $_SESSION['userId']=$uId;
+  $sql->close();
+  $con->close();
+  header("Location: ../../views/viewAccount.php");
+
+}
+
+echo 'Username taken';
+header('Refresh: 2; URL = ../../views/register.html');
+
 
 ?>
