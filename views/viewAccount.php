@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['admin'] = false;
     if(!isset($_SESSION['userId']))
       header('location: ../views/viewLogin.php');
 ?>
@@ -46,7 +45,9 @@
         <a href = "viewAddAccount.php">New Account</a> <br>
         <a href = "viewEditEmail.php">Edit Email</a> <br>
         <a href = "viewEditPassword.php">Edit Password</a>
-        <a href = "../ticket/reviewTicket.php">View Tickets</a>
+        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
+          <a href = "../ticket/reviewTicket.php">View Tickets</a>
+        <?php } ?>
         <a href = "../ticket/submitTicket.php">Submit Ticket</a>
         </div>
       </main>

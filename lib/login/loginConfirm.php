@@ -25,18 +25,33 @@ $stmt->bind_result($pwdsql, $uId);
 $stmt->store_result();
 $stmt->fetch();
 if($stmt->num_rows==1) {
-  echo "inside";
   if($pwd == $pwdsql) {
     $_SESSION['userId']=$uId;
     $stmt->close();
+    $stmt = $con->prepare("SELECT id FROM admin WHERE id = ?");
+    $stmt->bind_param("i" , $uId);
+    $stmt->execute();
+    if($stmt->fetch()){
+      $_SESSION['admin'] = true;
+      $stmt->close();
+      $con->close();
+      echo "Logged in as an admin";
+      header("Refresh: 2; URL = ../../views/viewAccount.php");
+    }
+    else {
+      $_SESSION['admin'] = false;
+    $stmt->close();
     $con->close();
       header("Location: ../../views/viewAccount.php");
+    }
   }
 
 
 
 }
 else {
+  $stmt->close();
+  $con->close();
 	echo "userId or password is not matched";
 }
 //$row = mysqli_fetch_array($rst, MYSQLI_ASSOC) ;
@@ -46,7 +61,6 @@ else {
 //}else{
 	//echo "loged in succesfully";
 //}
-$stmt->close();
-$con->close();
+
 
 ?>
