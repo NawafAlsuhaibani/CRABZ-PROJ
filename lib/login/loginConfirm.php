@@ -16,19 +16,22 @@ $con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-$stmt = $con->prepare("SELECT userId,userName,password FROM user WHERE userName= ? AND password=?");
-$stmt->bind_param("ss" , $uname , $pwd);
+$stmt = $con->prepare("SELECT password, userId FROM user WHERE userName= ?");
+$stmt->bind_param("s" , $uname);
 //$sql = ("SELECT userName,password FROM user WHERE userName=".$uname." AND password=".$pwd);
 
 //$rst = $con->query($sql);
 $stmt->execute();
-$stmt->bind_result($uId, $uname , $pwd);
+$stmt->bind_result($pwdsql, $uId);
 $stmt->store_result();
 $stmt->fetch();
 if($stmt->num_rows==1) {
-  $_SESSION['userId']=$uId;
+  echo "inside";
+  if(password_verify($pwd, $pwdsql)) {
+    $_SESSION['userId']=$uId;
 
-  header("Location: ../../Account/Account.php");
+    header("Location: ../../views/viewAccount.php");
+  }
 
 }
 else {

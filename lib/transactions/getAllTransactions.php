@@ -4,24 +4,24 @@
 
   require('../db_credentials.php');
 
-  if(isset($_POST['accNum']) && isset($_POST['balance'])) {
+//  if(isset($_POST['accNum']) && isset($_POST['balance'])) {
     $con = connect();
-    $sql = "SELECT dateTime, note, amount, transId, fromAcc FROM transaction WHERE fromAcc = ? ORDER BY dateTime Desc";
+    $sql = "SELECT dateNtime, amountCost, paytype, userid, csvid FROM cvsfileimport WHERE userid = ? ORDER BY dateNtime Desc";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param('d',$_POST['accNum']);
+    $stmt->bind_param('i',$_SESSION['userId']);
     $stmt->execute();
 
-    $stmt->bind_result($date,$note,$amount,$tId, $fromAcc);
+    $stmt->bind_result($date,$amount,$paytype,$userid, $csvid);
     //  Loop through rows of result_set and print
     $remainder;
     while($stmt->fetch()) {
-      $remainder = $_POST['balance'] - $amount;
-      echo "<tr><td>Type</td><td>$amount</td><td>$tId</td><td>$note</td><td>$remainder</td><td>$date</td></tr>";
+      //$remainder = $_POST['balance'] - $amount;
+      echo "<tr><td>$date</td><td>$amount</td><td>$paytype</td></tr>";
     }
 
     $stmt->close();
     $con->close();
 
-  }
+//  }
 
 ?>

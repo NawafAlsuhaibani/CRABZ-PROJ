@@ -41,7 +41,7 @@ $(document).ready(function() {
         var csf = str.split(',');
         balance = csf[1];
         var accNum = csf[0].substring(csf[0].length-3,csf[0].length);
-        $('#accNum').html('******' + accNum);
+        $('#accNum').html('*****'+csf[0]);
         $('#balance').html("$" + balance);
         $('#accType').html(csf[2]);
         getTransactions(num, balance);
@@ -63,7 +63,7 @@ $(document).ready(function() {
       data: {accNum: num, balance: balance},
       url:  '../lib/transactions/getAllTransactions.php',
       success: function(results) {
-        $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
+        $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
         $('#transactionTable').append(results);
       }
     })
@@ -80,8 +80,12 @@ $(document).ready(function() {
           },
       url:  '../lib/transactions/filterTransactions.php',
       success: function(results) {
-        $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
+              $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
         $('#transactionTable').append(results);
+      },
+      error: function(xhr, status, err) {
+        alert(status);
+        alert(err);
       }
     })
   }
@@ -89,14 +93,14 @@ $(document).ready(function() {
   function filterBudget() {
     $.ajax({
       type: 'post',
-      data: {filterMethod: 'budget', bindMethod: 'date', sortBy: $('select[name=sortBy]').val(), orderBy: $('select[name=orderBy]').val(),
+      data: {filterMethod: 'budget', bindMethod: 'date', sortBy: $('select[name=sortByB]').val(), orderBy: $('select[name=orderByB]').val(),
             budgetAmt: $('input[name=budgetAmt]').val(), datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(),
             balance: balance, accNum: num
             },
       url:  '../lib/transactions/filterTransactions.php',
       success:  function(results) {
         budget = $('input[name=budgetAmt]').val();
-        $('#transactionTable').html('<tr><th>Type</th><th>Amount</th><th>Transaction Id</th></th><th>Note</th><th>Account Balance</th><th>Date</th></tr>');
+                $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
         $('#transactionTable').append(results);
         getBudget();
       }
@@ -109,7 +113,7 @@ $(document).ready(function() {
       data: {
             datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(), accNum: num
             },
-      url:  '../lib/transactions/getSpent.php',
+      url:  '../lib/transactions/getBudget.php',
       success:  function(results) {
         $('#budgetSpent').html(results);
         $('#budgetLeft').html(budget - results);
@@ -137,6 +141,8 @@ $(document).ready(function() {
     e.preventDefault();
     filterBudget();
   });
+
+  $('')
 
   //  Populate account list initially
   getAccounts();

@@ -8,7 +8,7 @@ session_start();
     <!-- <a href="/CRABZ-PROJ/transfer/viewTransfers.php">Transfer</a> -->
     <a href="../importingcsv/csvimport.php">Import</a>
     <a href="../views/viewTransactions.php">Transactions</a>
-    <a href="../Account/Account.php">Account</a>
+    <a href="../views/viewAccount.php">Account</a>
   </div>
   <div>
   <?php if(!isset($_SESSION['userId'])) { ?>

@@ -27,19 +27,20 @@ $rst = $con->query($sql);
 
 if($valid){
 $sql = $con->prepare("INSERT INTO user (name,userName,password,email) VALUES (?,?,?,?)");
+$password = password_hash($password, PASSWORD_DEFAULT);
 $sql->bind_param('ssss', $name, $userName, $password, $email);
 
 if (!$sql->execute()) {
         echo $sql->error;
         echo "<br>";
     }
-    $stmt = $con->prepare("SELECT userId,userName,password FROM user WHERE userName= ? AND password=?");
-    $stmt->bind_param("ss" , $userName , $password);
+    $stmt = $con->prepare("SELECT userId FROM user WHERE userName = ?");
+    $stmt->bind_param("s" , $userName);
     $stmt->execute();
-    $stmt->bind_result($uId, $uname , $pwd);
+    $stmt->bind_result($uId);
     $stmt->fetch();
     $_SESSION['userId']=$uId;
-    header("Location: ../../Account/Account.php");
+    header("Location: ../../views/viewAccount.php");
 }
 $stmt->close();
 $sql->close();

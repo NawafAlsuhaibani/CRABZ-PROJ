@@ -6,10 +6,10 @@ require('../db_credentials.php');
 
 $con = connect();
 
-$sql = "SELECT SUM(amount) FROM transaction WHERE fromAcc = ? AND dateTime >= ? AND dateTime <= ?";
+$sql = "SELECT SUM(amountCost) FROM cvsfileimport WHERE userid = ? AND dateNtime >= ? AND dateNtime <= ?";
 
 $stmt = $con->prepare($sql);
-$stmt->bind_param('dss', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto']);
+$stmt->bind_param('iss', $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto']);
 $stmt->execute();
 $stmt->bind_result($total);
 $stmt->fetch();

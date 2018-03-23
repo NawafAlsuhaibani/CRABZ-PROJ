@@ -55,8 +55,7 @@
                     <div class="flex-col">
                       <select name="sortBy">
                         <option value="dateTime">Date</option>
-                        <option value="type0">Credit</option>
-                        <option value="type1">Debit</option>
+                        <option value="type">Type</option>
                         <option value="amount">Amount</option>
                       </select>
                       <select name="orderBy">
@@ -98,7 +97,7 @@
                   by checking if the budget form has been submitted -->
             <section id="BudgetView" class="flex-row space-between small-pad margin-top bg-color-dark hidden">
               <h2 class="inline-block">Budget Summary</h2>
-              <form id="budgetForm" method="get" action="viewTransactions.php">
+              <form id="budgetForm" method="post" action="viewTransactions.php">
                 <div class="flex-row">
                   <div class="flex-col space-between small-margin-sides">
                     <h3 class="inline-block">Budget Settings</h3>
@@ -107,13 +106,12 @@
                   <div name="Sort-Options" class="inline-block box">
                     <h3>Sort Options</h3>
                     <div class="inline-block">
-                      <select name="sortBy">
+                      <select name="sortByB">
                         <option value="dateTime">Date</option>
-                        <option value="credit">Credit</option>
-                        <option value="debit">Debit</option>
+                        <option value="type">Type</option>
                         <option value="amount">Amount</option>
                       </select>
-                      <select name="orderBy">
+                      <select name="orderByB">
                         <option value="Desc">Desc</option>
                         <option value="Asc">Asc</option>
                       </select>
