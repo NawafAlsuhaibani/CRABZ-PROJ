@@ -13,6 +13,7 @@
     <script type="text/javascript" src="Chart.min.js"></script>
 	<script type="text/javascript" src="jquery.min.js"></script>
   <script type="text/javascript" src="../script/template.js"></script>
+  <script type="text/javascript" src="getAccounts.js"></script>
    <script>
 	$(document).ready(function(){
 				function createTableByJqueryEach(data)
@@ -45,6 +46,7 @@
 			$.ajax({
 		url: "data.php",
 		method: "GET",
+    data: {acc:$('#accounts').val()},
 		success: function(data) {
 			createTableByJqueryEach(data);
 			console.log(data);
@@ -92,7 +94,7 @@
 			$.ajax({
 		url: "datamon.php",
 		method: "GET",
-		data: {mon : mon},
+		data: {mon : mon, acc:$('#accounts').val()},
 		success: function(data) {
 		createTableByJqueryEach(data);
 
@@ -189,6 +191,8 @@
                         <p>
                             <input type="file" name="file1">
                             <input type="submit" value="import file!" name="import"> </p>
+                            <select id="accounts" name="accounts">
+                            </select>
                     </form>
                     <select name="date" id="date">
                     	<option value="1">Year</option>
@@ -211,7 +215,8 @@
                     <button id="sh" class="btndiv" name="sh">Go</button>
            <button id="barBtn" class="btndiv">bar chart</button>
           <button id="pieBtn" class="btndiv">pie chart</button>
-          <button id="tableBtn" class="btndiv">table</button>
+          <!-- <button id="tableBtn" class="btndiv">table</button> -->
+
                 </div>
             </section>
             <section class="flex-col small-pad margin-top bg-color-dark hidden" id="bar">

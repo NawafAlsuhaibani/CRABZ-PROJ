@@ -66,11 +66,12 @@ if (!empty($rst)){
 
 //Adding the entered account to the database linked to the logged in account
 if ($valid){
-    $sql = $con->prepare("INSERT INTO account (accNum, accType, balance, instNum, ownerId) VALUES (?, ?, ?, ?, ?)");
-    $sql->bind_param('iidii',$accnum, $acctype, $balance, $instnum, $_SESSION['userId']);
+    $sql = $con->prepare("INSERT INTO account (accNum, accType, balance, instNum, ownerId, lastdigs) VALUES (?, ?, ?, ?, ?, ?)");
+    $lastdigs = substr($accnum, strlen($accnum)-3);
+    $sql->bind_param('iidiii',md5($accnum), $acctype, $balance, $instnum, $_SESSION['userId'], $lastdigs);
 
     $sql->execute();
-    echo "Your account has been updated";
+    echo "Your account has been updatedz";
 }
 
 $sql->close();

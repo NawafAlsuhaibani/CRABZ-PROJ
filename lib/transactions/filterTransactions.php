@@ -9,18 +9,18 @@
   $con = connect();
 
   //  Starter sql for all queries
-  $sql = "SELECT dateTime, note, amount, transId FROM transaction, account WHERE fromAcc = accNum AND fromAcc = ? AND ownerId = ? ";
+  $sql = "SELECT dateNtime, amountCost, paytype, csvid FROM cvsfileimport WHERE userid = ? ";
 
   $params = 2; // Track amount of params to bind
 
   //  SQL builder
   switch($_POST['filterMethod']){
     case 'budget':
-      $sql = $sql . "AND dateTime >= ? AND dateTime <= ? ";
+      $sql = $sql . "AND dateNtime >= ? AND dateNtime <= ? ";
       $params = 4;
       break;
     case 'transaction':
-      $sql = $sql . "AND dateTime >= ? AND dateTime <= ? AND amount >= ? AND amount <= ? ";
+      $sql = $sql . "AND dateNtime >= ? AND dateNtime <= ? AND amountCost >= ? AND amountCost <= ? ";
       $params = 6;
       break;
   }
@@ -28,20 +28,15 @@
   //  Append order by clause
   switch ($_POST['sortBy']) {
     case 'dateTime':
-      $sql = $sql . "ORDER BY dateTime ";
+      $sql = $sql . "ORDER BY dateNtime ";
       break;
-    case 'credit':
+    case 'type':
       //  TODO
       // This needs to be changed to to a transaction type i.e. credit = 0, debit = 1
-      $sql = $sql . "ORDER BY dateTime ";
-      break;
-    case 'debit':
-      //  TODO
-      // This needs to be changed to to a transaction type i.e. credit = 0, debit = 1
-      $sql = $sql . "ORDER BY dateTime ";
+      $sql = $sql . "ORDER BY paytype ";
       break;
     case 'amount':
-      $sql = $sql . "ORDER BY amount ";
+      $sql = $sql . "ORDER BY amountCost ";
       break;
   }
 
@@ -55,36 +50,53 @@
       break;
   }
 
+  if(isset($_POST['limit'])){
+    switch($_POST['limit']) {
+      case '25':
+        $sql = $sql . " LIMIT 25";
+        break;
+      case '50':
+        $sql = $sql . " LIMIT 50";
+        break;
+      case '100':
+        $sql = $sql . " LIMIT 100";
+        break;
+      case 'all':
+        $sql = $sql;
+        break;
+    }
+  }
+
   //  Assemble stmt
   $stmt = $con->prepare($sql);
 
   //  Bind params
   switch($params) {
     case 2: //  Basic case no filter
-      $stmt = bind_parm('dd', $_POST['accNum'], $_SESSION['userId']);
+      $stmt = bind_parm('i', $_SESSION['userId']);
       break;
     case 4:
       if($_POST['bindMethod'] == 'date')
-        $stmt->bind_param('ddss', $_POST['accNum'], $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto']);
+        $stmt->bind_param('iss', $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto']);
       else
-        $stmt->bind_param('dddd', $_POST['accNum'], $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper']);
+        $stmt->bind_param('idd', $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper']);
       break;
     case 6:
       if($_POST['bindMethod'] == 'date')
-        $stmt->bind_param('ddssdd', $_POST['accNum'], $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
+        $stmt->bind_param('issii', $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
       else
-        $stmt->bind_param('ddddss', $_POST['accNum'], $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
+        $stmt->bind_param('dddss', $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
       break;
   }
 
   // Execute and print
   $stmt->execute();
-  $stmt->bind_result($date,$note,$amount,$tId);
+  $stmt->bind_result($date,$amount,$paytype,$tId);
   //  Loop through rows of result_set and print
   $remainder; //  **TODO**  Update DB code here to get a balance from transaction
   while($stmt->fetch()) {
     $remainder = $_POST['balance'] - $amount;
-    echo "<tr><td>Type</td><td>$amount</td><td>$tId</td><td>$note</td><td>$remainder</td><td>$date</td></tr>";
+      echo "<tr><td>$date</td><td>$amount</td><td>$paytype</td></tr>";
   }
 
   $stmt->close();

@@ -17,7 +17,7 @@ if ($error != null)
     }
 ?>
 <?php
-if (isset($_POST['import']))
+if (isset($_POST['import']) && isset($_POST['accounts']))
     {
     $filename = $_FILES["file1"]['tmp_name'];
 		$filetype = $_FILES["file1"]["type"];
@@ -27,19 +27,22 @@ if (isset($_POST['import']))
         }
     if ($_FILES["file1"]["size"] > 0)
         {
-       $sql = "LOAD DATA LOCAL INFILE '$filename' INTO TABLE cvsfileimport FIELDS TERMINATED BY ',' set userid = ".$_SESSION['userId']."; ";
+       $sql = "LOAD DATA LOCAL INFILE '$filename' INTO TABLE cvsfileimport FIELDS TERMINATED BY ',' set accountnum = ".$_POST['accounts']."; ";
 		//	$sql = "select * from cvsfileimport ; ";
         if ($conn->query($sql) === TRUE)
             {
-            echo "new data inserted $filetype";
+            echo "new data inserted";
+            header("Refresh: 2; URL = ../importingcsv/csvimport.php");
             }
           else
             {
-            echo "error inserting the data" . "<br />" . $conn->error;
+            echo "error inserting the data" . "<br />";
+            header("Refresh: 2; URL = ../importingcsv/csvimport.php");
             }
         }
     }
 else {
 	echo "error";
+  header("Refresh: 2; URL = ../importingcsv/csvimport.php");
 }
 ?>

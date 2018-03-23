@@ -18,7 +18,7 @@ if (!$mysqli) {
     die("Connection failed: " . $mysqli->error);
 }
 //query to get data from the table
-$query  = sprintf("SELECT sum(amountCost) as total,month(dateNtime) as month from cvsfileimport where userid = ".$_SESSION['userId']." group by month(dateNtime);");// all year
+$query  = sprintf("SELECT sum(amountCost) as total,month(dateNtime) as month from cvsfileimport where accountnum = ".$_GET['acc']." group by month(dateNtime);");// all year
 //$query  = sprintf("SELECT dateNtime, amountCost as total from cvsfileimport order by dateNtime asc limit 10;");
 //execute query
 $result = $mysqli->query($query);
