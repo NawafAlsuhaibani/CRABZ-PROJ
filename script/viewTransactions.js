@@ -63,7 +63,7 @@ $(document).ready(function() {
       data: {accNum: num, balance: balance, limit:$('#limit').val()},
       url:  '../lib/transactions/getAllTransactions.php',
       success: function(results) {
-        $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
+        $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
         $('#transactionTable').append(results);
       }
     })
@@ -81,7 +81,7 @@ $(document).ready(function() {
           },
       url:  '../lib/transactions/filterTransactions.php',
       success: function(results) {
-              $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
+              $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
         $('#transactionTable').append(results);
       },
       error: function(xhr, status, err) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
       url:  '../lib/transactions/filterTransactions.php',
       success:  function(results) {
         budget = $('input[name=budgetAmt]').val();
-                $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
+                $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
         $('#transactionTable').append(results);
         getBudget();
       }

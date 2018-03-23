@@ -42,7 +42,7 @@ function getTransactions() {
     data: {accNum: num, balance: balance, limit:$('#limit').val()},
     url:  '../lib/transactions/getAllTransactions.php',
     success: function(results) {
-      $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th><th>Balance</th></tr>');
+      $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
       $('#transactionTable').append(results);
     }
   })
