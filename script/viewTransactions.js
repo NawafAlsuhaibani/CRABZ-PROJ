@@ -135,11 +135,13 @@ $(document).ready(function() {
   //  Pass args to filterSearch
   $('#transactionsForm').submit(function(e) {
     e.preventDefault();
+    num = $('#accounts').val();
     filterTransactions()
   });
 
   $('#budgetForm').submit(function(e) {
     e.preventDefault();
+    num = $('#accounts').val();
     filterBudget();
   });
 

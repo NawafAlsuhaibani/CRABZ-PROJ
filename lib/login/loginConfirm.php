@@ -39,7 +39,6 @@ if($stmt->num_rows==1) {
       header("Refresh: 2; URL = ../../views/viewAccount.php");
     }
     else {
-      $_SESSION['admin'] = false;
     $stmt->close();
     $con->close();
       header("Location: ../../views/viewAccount.php");

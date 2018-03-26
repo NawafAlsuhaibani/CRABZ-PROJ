@@ -39,7 +39,7 @@
 			}
 			echo('</table>');
 
-			echo '<br> <a href="../Account/Account.php">Go back</a>';
+			echo '<br> <a href="../views/viewAccount.php">Go back</a>';
 		?>
 
 		<footer>
