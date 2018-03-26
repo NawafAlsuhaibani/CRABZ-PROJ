@@ -22,6 +22,18 @@ $con = mysqli_connect("localhost", "crabz", "88yGu2XF", "crabz");
 if (mysqli_connect_errno()){
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
+$sql = $con->prepare("SELECT userName FROM user WHERE userName = ?");
+$sql->bind_param('s', $userName);
+$sql->execute();
+$sql->bind_result($rst);
+$sql->fetch();
+unset($sql);
+if (!empty($rst)){
+    echo "Username is exist!";
+    echo "<br>";
+    $valid = FALSE;
+}
+
 $sql = "SELECT userId AS lastId FROM user";
 $rst = $con->query($sql);
 

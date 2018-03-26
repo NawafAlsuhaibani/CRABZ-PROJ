@@ -31,7 +31,7 @@ if($stmt->num_rows==1) {
 
 }
 else {
-	echo "userId or password is not matched";
+	header("Location: login2.php");
 }
 //$row = mysqli_fetch_array($rst, MYSQLI_ASSOC) ;
 
