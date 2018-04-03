@@ -40,11 +40,11 @@ function getAccountInfo() {
     }
   })
 }
-// Nawaf: 
+// Nawaf:
 function getPayInfo() {
  $.post("../lib/transactions/getPayInfo.php",{accNum: num},
                         function (data) {
-                            var data = JSON.parse(data);     
+                            var data = JSON.parse(data);
 							var str = "";
                             for (var i = 0; (i < data.length); i++)
                             {
@@ -53,7 +53,7 @@ function getPayInfo() {
                             }
                         });
 }
-// nawaf end. 
+// nawaf end.
 
 //  Gets all transactions for selected account
 //**TODO**  Change DB to hold account balance at time and grab that
@@ -79,12 +79,13 @@ function filterTransactions() {
           accNum: num, balance: balance,
           datefrom:  $('input[name=fromDate]').val(), dateto:  $('input[name=toDate]').val(),
           amtlower:  $('input[name=minAmt]').val(), amtupper:  $('input[name=maxAmt]').val(),
-          limit:$('#limit').val(), 
+          limit:$('#limit').val(), category: $('select[name=type]').val(),
 		  type1: $('select[name=type]').val()
         },
     url:  '../lib/transactions/filterTransactions.php',
     success: function(results) {
-            $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
+      alert($('select[name=type]').val());
+      $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
       $('#transactionTable').append(results);
     },
     error: function(xhr, status, err) {
@@ -163,5 +164,5 @@ $(document).ready(function() {
 
   //  Populate account list initially
   getAccounts();
-  
+
 });

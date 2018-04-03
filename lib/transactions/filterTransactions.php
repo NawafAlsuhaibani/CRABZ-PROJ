@@ -1,7 +1,9 @@
 <?php
 
   //  Start the session
-
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
   session_start();
 
   require('../db_credentials.php');
@@ -23,6 +25,15 @@
     case 'transaction':
       $sql = $sql . "AND dateNtime >= ? AND dateNtime <= ? AND amountCost >= ? AND amountCost <= ? ";
       $params = 5;
+      break;
+  }
+
+  switch($_POST['category']) {
+    case 'All':
+      break;
+    default:
+      $sql = $sql . "AND paytype like ? ";
+      $params = $params + 1;
       break;
   }
 
@@ -83,10 +94,17 @@
         $stmt->bind_param('idd', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper']);
       break;
     case 5:
+    if($_POST['bindMethod'] == 'date')
+      $stmt->bind_param('issdd', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
+    else
+      $stmt->bind_param('iddss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
+    break;
+    case 6:
+      $category = $_POST['category'] . "%";
       if($_POST['bindMethod'] == 'date')
-        $stmt->bind_param('issdd', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
+        $stmt->bind_param('issdds', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper'], $category);
       else
-        $stmt->bind_param('iddss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
+        $stmt->bind_param('iddsss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto'], $category);
       break;
   }
 

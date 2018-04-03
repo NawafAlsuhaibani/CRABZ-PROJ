@@ -36,7 +36,7 @@
                 <option value="100">100</option>
                 <option value="all">All</option>
               </select>
-              
+
             </div>
             <div class="flex-col">
               <div class="flex-row">
@@ -63,14 +63,14 @@
                     <div class="flex-col">
                       <select name="sortBy">
                         <option value="dateTime">Date</option>
-                        <option value="type">Type</option>
+                        <!-- <option value="type">Type</option> -->
                         <option value="amount">Amount</option>
                       </select>
                       <select name="orderBy">
                         <option value="Desc">Desc</option>
                         <option value="Asc">Asc</option>
                       </select>
-                     <select id="type" name="type"><option value="all">All</option></select> <!-- Nawaf-->
+                     <select id="type" name="type"><option value="All">All</option></select> <!-- Nawaf-->
                     </div>
                   </div>
                   <div class="flex-col small-margin-sides">
