@@ -36,3 +36,12 @@
   width:100px;
   height:40px;
 }
+.error {
+  border-radius: 3px;
+  border-color:#eba9ab;
+  background-color: #f0a5aa;
+  padding: 10px;
+  color: #434746;
+  font-weight: bold;
+  text-align: center;
+}

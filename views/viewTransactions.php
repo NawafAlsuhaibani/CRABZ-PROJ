@@ -36,7 +36,6 @@
                 <option value="100">100</option>
                 <option value="all">All</option>
               </select>
-              
             </div>
             <div class="flex-col">
               <div class="flex-row">
@@ -70,7 +69,6 @@
                         <option value="Desc">Desc</option>
                         <option value="Asc">Asc</option>
                       </select>
-                     <select id="type" name="type"><option value="all">All</option></select> <!-- Nawaf-->
                     </div>
                   </div>
                   <div class="flex-col small-margin-sides">

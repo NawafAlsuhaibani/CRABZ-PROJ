@@ -33,26 +33,32 @@ if($stmt->num_rows==1) {
     $stmt->execute();
     if($stmt->fetch()){
       $_SESSION['admin'] = true;
+      unset($_SESSION['loginError']);
       $stmt->close();
       $con->close();
-      echo "Logged in as an admin";
+      echo "Logged in as an admin...Redirecting";
       header("Refresh: 2; URL = ../../views/viewAccount.php");
     }
     else {
-      $_SESSION['admin'] = false;
-    $stmt->close();
-    $con->close();
-      header("Location: ../../views/viewAccount.php");
+      unset($_SESSION['loginError']);
+      $stmt->close();
+      $con->close();
+      echo "Logged in as user...Redirecting";
+      header("Refresh: 2; URL = ../../views/viewAccount.php");
     }
   }
-
-
-
+  else {
+    $stmt->close();
+    $con->close();
+    $_SESSION['loginError'] = true;
+    header("Location: ../../views/viewLogin.php");
+  }
 }
 else {
   $stmt->close();
   $con->close();
-	echo "userId or password is not matched";
+  $_SESSION['loginError'] = true;
+  header("Location: ../../views/viewLogin.php");
 }
 //$row = mysqli_fetch_array($rst, MYSQLI_ASSOC) ;
 

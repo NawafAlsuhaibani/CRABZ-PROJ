@@ -1,6 +1,7 @@
 <?php
 
   //  Start the session
+
   session_start();
 
   require('../db_credentials.php');
@@ -9,19 +10,19 @@
   $con = connect();
 
   //  Starter sql for all queries
-  $sql = "SELECT dateNtime, amountCost, paytype, csvid FROM cvsfileimport WHERE userid = ? ";
+  $sql = "SELECT dateNtime, amountCost, paytype, csvid FROM cvsfileimport WHERE accountnum = ? ";
 
-  $params = 2; // Track amount of params to bind
+  $params = 1; // Track amount of params to bind
 
   //  SQL builder
   switch($_POST['filterMethod']){
     case 'budget':
       $sql = $sql . "AND dateNtime >= ? AND dateNtime <= ? ";
-      $params = 4;
+      $params = 3;
       break;
     case 'transaction':
       $sql = $sql . "AND dateNtime >= ? AND dateNtime <= ? AND amountCost >= ? AND amountCost <= ? ";
-      $params = 6;
+      $params = 5;
       break;
   }
 
@@ -72,20 +73,20 @@
 
   //  Bind params
   switch($params) {
-    case 2: //  Basic case no filter
-      $stmt = bind_parm('i', $_SESSION['userId']);
+    case 1: //  Basic case no filter
+      $stmt = bind_parm('i', $_POST['accNum']);
       break;
-    case 4:
+    case 3:
       if($_POST['bindMethod'] == 'date')
-        $stmt->bind_param('iss', $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto']);
+        $stmt->bind_param('iss', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto']);
       else
-        $stmt->bind_param('idd', $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper']);
+        $stmt->bind_param('idd', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper']);
       break;
-    case 6:
+    case 5:
       if($_POST['bindMethod'] == 'date')
-        $stmt->bind_param('issii', $_SESSION['userId'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
+        $stmt->bind_param('issdd', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
       else
-        $stmt->bind_param('dddss', $_SESSION['userId'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
+        $stmt->bind_param('iddss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
       break;
   }
 

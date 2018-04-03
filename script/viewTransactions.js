@@ -9,7 +9,6 @@ function getAccounts() {
     success: function (data) {
       $('#accounts').html(data);
       num = $("#accounts option:first").val();
-	  getPayInfo();
       getAccountInfo(num);
       getTransactions(num);
     }
@@ -40,20 +39,6 @@ function getAccountInfo() {
     }
   })
 }
-// Nawaf: 
-function getPayInfo() {
- $.post("../lib/transactions/getPayInfo.php",{accNum: num},
-                        function (data) {
-                            var data = JSON.parse(data);     
-							var str = "";
-                            for (var i = 0; (i < data.length); i++)
-                            {
-								str = "<option value="+data[i]['paytype']+">"+data[i]['paytype']+"</option>";
-								$("#type").append(str);
-                            }
-                        });
-}
-// nawaf end. 
 
 //  Gets all transactions for selected account
 //**TODO**  Change DB to hold account balance at time and grab that
@@ -79,8 +64,7 @@ function filterTransactions() {
           accNum: num, balance: balance,
           datefrom:  $('input[name=fromDate]').val(), dateto:  $('input[name=toDate]').val(),
           amtlower:  $('input[name=minAmt]').val(), amtupper:  $('input[name=maxAmt]').val(),
-          limit:$('#limit').val(), 
-		  type1: $('select[name=type]').val()
+          limit:$('#limit').val()
         },
     url:  '../lib/transactions/filterTransactions.php',
     success: function(results) {
@@ -151,15 +135,17 @@ $(document).ready(function() {
   //  Pass args to filterSearch
   $('#transactionsForm').submit(function(e) {
     e.preventDefault();
+    num = $('#accounts').val();
     filterTransactions()
   });
 
   $('#budgetForm').submit(function(e) {
     e.preventDefault();
+    num = $('#accounts').val();
     filterBudget();
   });
 
   //  Populate account list initially
   getAccounts();
-  
+
 });
