@@ -84,7 +84,7 @@ function filterTransactions() {
         },
     url:  '../lib/transactions/filterTransactions.php',
     success: function(results) {
-      alert($('select[name=type]').val());
+      //alert($('select[name=type]').val());
       $('#transactionTable').html('<tr><th>Date</th><th>Amount</th></th><th>Type</th></tr>');
       $('#transactionTable').append(results);
     },

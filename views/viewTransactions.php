@@ -63,7 +63,7 @@
                     <div class="flex-col">
                       <select name="sortBy">
                         <option value="dateTime">Date</option>
-                        <!-- <option value="type">Type</option> -->
+                        <option value="type">Type</option>
                         <option value="amount">Amount</option>
                       </select>
                       <select name="orderBy">
