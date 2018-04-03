@@ -41,6 +41,10 @@
 		}
 		});
     $("#sh").click(function(){
+		$("#mycanvas1").remove(); // this is my <canvas> element
+		$("#mycanvas2").remove();
+  		$("#tabledata").append('<canvas id="mycanvas1"><canvas>');
+		$("#tabledata").append('<canvas id="mycanvas2"><canvas>');
 		var x = $("#date").val();
 		if(x=='1'){
 			$.ajax({
@@ -61,7 +65,7 @@
 				datasets : [
 					{
 						label: 'Total spending',
-						backgroundColor: 'antiquewhite',
+						backgroundColor: 'blue',
 						hoverBackgroundColor: 'red',
 						color: 'blue',
 						borderColor: 'green',
@@ -74,10 +78,49 @@
 			var barGraph = new Chart(ctx1, {
 				type: 'bar',
 				data: chartdata,
+				options: {
+        legend: {
+             labels: {
+                 
+                 }
+              },
+        title: {
+            display: true,
+            fontColor: 'antiquewhite',
+            text: 'Monthly Spending'
+        }     ,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontColor: 'antiquewhite'
+                },
+            }],
+          xAxes: [{
+                ticks: {
+                    fontColor: 'antiquewhite'
+                },
+            }]
+        } 
+
+    }
 			});
 						var barGraph = new Chart(ctx2, {
 				type: 'pie',
-				data: chartdata
+				data: chartdata,
+				options: {
+        legend: {
+             labels: {
+                 fontColor: "white"
+                 }
+              },
+        title: {
+            display: true,
+            fontColor: 'antiquewhite',
+            text: 'Daily Spending'
+        }     ,
+    }
+				
 			});
 		},
 		error: function(data) {
@@ -90,7 +133,6 @@
 		}
 		else if(x=='2'){
 			var mon = $('#month').val();
-
 			$.ajax({
 		url: "datamon.php",
 		method: "GET",
@@ -111,7 +153,7 @@
 				datasets : [
 					{
 						label: 'Total spending',
-						backgroundColor: 'antiquewhite',
+						backgroundColor: 'blue',
 						hoverBackgroundColor: 'red',
 						color: 'blue',
 						borderColor: 'green',
@@ -124,10 +166,48 @@
 			var barGraph = new Chart(ctx1, {
 				type: 'bar',
 				data: chartdata,
+				options: {
+        legend: {
+             labels: {
+                 
+                 }
+              },
+        title: {
+            display: true,
+            fontColor: 'antiquewhite',
+            text: 'Daily Spending'
+        }     ,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontColor: 'antiquewhite'
+                },
+            }],
+          xAxes: [{
+                ticks: {
+                    fontColor: 'antiquewhite'
+                },
+            }]
+        } 
+
+    }
 			});
 						var barGraph = new Chart(ctx2, {
 				type: 'pie',
-				data: chartdata
+				data: chartdata,
+							options: {
+        legend: {
+             labels: {
+                 fontColor: "white"
+                 }
+              },
+        title: {
+            display: true,
+            fontColor: 'antiquewhite',
+            text: 'Daily Spending'
+        }     ,
+    }
 			});
 		},
 		error: function(data) {
@@ -199,23 +279,23 @@
                     	<option value="2">Month</option>
                     </select>
                     <select name="month" id="month">
-                    	<option value="1">1</option>
-                    	<option value="2">2</option>
-                    	<option value="3">3</option>
-                    	<option value="4">4</option>
-                    	<option value="5">5</option>
-                    	<option value="6">6</option>
-                    	<option value="7">7</option>
-                    	<option value="8">8</option>
-                    	<option value="9">9</option>
-                    	<option value="10">10</option>
-                    	<option value="11">11</option>
-                    	<option value="12">12</option>
+                    	<option value="1">January</option>
+                    	<option value="2">February</option>
+                    	<option value="3">March</option>
+                    	<option value="4">April</option>
+                    	<option value="5">May</option>
+                    	<option value="6">June</option>
+                    	<option value="7">July</option>
+                    	<option value="8">Auggust</option>
+                    	<option value="9">September</option>
+                    	<option value="10">October</option>
+                    	<option value="11">November</option>
+                    	<option value="12">December</option>
                     </select>
                     <button id="sh" class="btndiv" name="sh">Go</button>
            <button id="barBtn" class="btndiv">bar chart</button>
           <button id="pieBtn" class="btndiv">pie chart</button>
-          <!-- <button id="tableBtn" class="btndiv">table</button> -->
+           <button id="tableBtn" class="btndiv">table</button>
 
                 </div>
             </section>

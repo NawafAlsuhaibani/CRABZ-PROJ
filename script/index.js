@@ -1,5 +1,3 @@
-var num, balance, limit;
-
 function getAccounts() {
   $.ajax({
     type: 'post',
@@ -7,9 +5,8 @@ function getAccounts() {
     success: function (data) {
       $('#accounts').html(data);
       num = $("#accounts option:first").val();
-      balance = $('#balance').val();
-      getAccountInfo();
-      getTransactions();
+      getAccountInfo(num);
+      getTransactions(num);
     }
   })
 }

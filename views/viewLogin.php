@@ -1,9 +1,3 @@
-<?php
-  session_start();
-  if(isset($_SESSION['userId'])){
-    header('location: ../views/viewAccount.php');
-  }
- ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,11 +12,6 @@
   </head>
   <body class="bodyWrapper">
     <header id="header"></header>
-    <?php if(isset($_SESSION['loginError'])) { ?>
-    <p class="position error" style="margin-bottom: 0;">
-    Your username or password was entered incorrectly.
-    </p>
-    <?php } ?>
     <!-- Login form starts here -->
 		<form action="../lib/login/loginConfirm.php" method="post">
       <div class="position">

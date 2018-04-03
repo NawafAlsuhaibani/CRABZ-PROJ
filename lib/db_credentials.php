@@ -22,5 +22,19 @@
     //  Return the connection
     return $con;
   }
+function PDOconnect() {
+    // Connection variables
+define('DB_HOST' , 	'localhost');
+define('DBNAME' , 'crabz');
+define('DBUSER' , 'crabz');
+define('DBPASS' , '88yGu2XF');
+try {
+$conn = new PDO("mysql:host=localhost; dbname=".DBNAME."" , DBUSER, DBPASS);
+	return $conn;
+	}
+catch(PDOException $e) {
+	die("error" . $e);
+}
+  }
 
 ?>
