@@ -8,13 +8,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/nav-header.css">
     <script type="text/javascript" src="Chart.min.js"></script>
+    <script type="text/javascript" src="js/read-csv.js"></script>
 	<script type="text/javascript" src="jquery.min.js"></script>
-  <script type="text/javascript" src="../script/template.js"></script>
-  <script type="text/javascript" src="getAccounts.js"></script>
-   <script>
+    <script type="text/javascript" src="getAccounts.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/paging.js"></script>
+    <script type="text/javascript" src="../script/template.js"></script>
+    <link rel="stylesheet" href="../css/layout.css" />
+<script>
 	$(document).ready(function(){
 				function createTableByJqueryEach(data)
 {
@@ -41,6 +44,7 @@
 		}
 		});
     $("#sh").click(function(){
+		$("#pre").hide();
 		$("#mycanvas1").remove(); // this is my <canvas> element
 		$("#mycanvas2").remove();
   		$("#tabledata").append('<canvas id="mycanvas1"><canvas>');
@@ -225,22 +229,25 @@
 
 });
 	</script>
-	<script>
+<script>
 	$(document).ready(function(){
 		$("#pieBtn").click(function(){
 			$("#mycanvas2").show();
 			$("#mycanvas1").hide();
+			$("#pre").hide();
 			$("#eachTable").hide();
 
 		});
 		$("#barBtn").click(function(){
 			$("#mycanvas1").show();
+			$("#pre").hide();
 			$("#mycanvas2").hide();
 			$("#eachTable").hide();
 
 		});
 		$("#tableBtn").click(function(){
 			$("#mycanvas1").hide();
+			$("#pre").hide();
 			$("#mycanvas2").hide();
 			$("#eachTable").show();
 
@@ -269,8 +276,8 @@
                     <p>Note, please make sure that your csv file has the following format: date,$amount,catagory</p>
                     <form action="csvhandling.php" method="post" enctype="multipart/form-data">
                         <p>
-                            <input type="file" name="file1">
-                            <input type="submit" value="import file!" name="import"> </p>
+                            <input type="file" name="file1" onchange="handleFiles(this.files)" accept=".csv">
+                            <input type="submit" value="import file!" name="import" > </p>
                             <select id="accounts" name="accounts">
                             </select>
                     </form>
@@ -298,6 +305,12 @@
            <button id="tableBtn" class="btndiv">table</button>
 
                 </div>
+                 
+            </section>
+            <section class="flex-col small-pad margin-top bg-color-dark" id="pre">
+            <div id="output">
+            
+   			 </div>
             </section>
             <section class="flex-col small-pad margin-top bg-color-dark hidden" id="bar">
                 <article class="entry space-between">
