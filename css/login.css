@@ -1,0 +1,47 @@
+
+.position{
+
+  margin: auto;
+  width: 500px;
+}
+.heading {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.label{
+  display: block;
+  margin-bottom: 2px;
+  font-size: 20pt;
+}
+.input{
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+}
+.position td {
+  text-align: center;
+}
+.logbt{
+  font-size: 10pt;
+  background-color: green;
+  width:100px;
+  height:40px;
+}
+.canbt{
+  font-size: 10pt;
+  background-color: red;
+  width:100px;
+  height:40px;
+}
+.error {
+  border-radius: 3px;
+  border-color:#eba9ab;
+  background-color: #f0a5aa;
+  padding: 10px;
+  color: #434746;
+  font-weight: bold;
+  text-align: center;
+}
