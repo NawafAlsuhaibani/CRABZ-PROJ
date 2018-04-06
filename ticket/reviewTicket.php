@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/nav-header.css">
     <script type='text/javascript' src="../script/jquery-3.1.1.min.js"></script>
 		<script type='text/javascript' src="../script/template.js"></script>
-    <script type='text/javascript' src="../script/transfers.js"></script>
     <title>CRABZ-View Account Information</title>
   </head>
   <body class="bodyWrapper">
@@ -15,6 +14,7 @@
     </header>
     <div class="mainDivWrapper singleColumn-Margin">
       <main class="mainWrapper">
+        <div class="small-pad bg-color-dark">
 				<?php
 					//if user has an admin account (boolean check?) we allow them see these links
 
@@ -24,7 +24,7 @@
 					$query = mysqli_query($connection, "SELECT * FROM ticket");
 					$query2 = mysqli_query($connection, "SELECT * FROM ticket");
 
-					echo('TICKETS <br>');
+					echo('<h1 style="display:inline; font-size:44px;"><strong>Tickets</strong></h1><br>');
 
 					echo('<table>');
 					echo('<tr><th>Username</th><th>Email</th><th>Title of Ticket</th><th>Ticket Content</th></tr>');
@@ -35,7 +35,7 @@
 					}
 					echo('</table>');
 					//start populating the feedback
-					echo('FEEDBACK <br>');
+					echo('<h1 style="display:inline; font-size:44px;"><strong>Feedback</strong></h1><br>');
 
 					echo('<table>');
 					echo('<tr><th>Username</th><th>Email</th><th>Title of Comment</th><th>Feedback Content</th></tr>');
@@ -48,6 +48,7 @@
 
 					echo '<br> <a href="../views/viewAccount.php">Go back</a>';
 				?>
+      </div>
       </main>
       <!--
       <nav class="rightColumn">
