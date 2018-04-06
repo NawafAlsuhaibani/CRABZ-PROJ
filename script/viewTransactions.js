@@ -50,6 +50,7 @@ function getPayInfo() {
                             {
 								str = "<option value="+data[i]['paytype']+">"+data[i]['paytype']+"</option>";
 								$("#type").append(str);
+								$("#type1").append(str);
                             }
                         });
 }
@@ -100,7 +101,7 @@ function filterBudget() {
     type: 'post',
     data: {filterMethod: 'budget', bindMethod: 'date', sortBy: $('select[name=sortByB]').val(), orderBy: $('select[name=orderByB]').val(),
           budgetAmt: $('input[name=budgetAmt]').val(), datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(),
-          balance: balance, accNum: num
+          balance: balance, accNum: num, category: $('select[name=type1]').val()
           },
     url:  '../lib/transactions/filterTransactions.php',
     success:  function(results) {
@@ -116,7 +117,7 @@ function getBudget() {
   $.ajax({
     type: 'post',
     data: {
-          datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(), accNum: num
+          datefrom:  $('input[name=fromDateB]').val(), dateto:  $('input[name=toDateB]').val(), accNum: num, category: $('select[name=type1]').val()
           },
     url:  '../lib/transactions/getBudget.php',
     success:  function(results) {

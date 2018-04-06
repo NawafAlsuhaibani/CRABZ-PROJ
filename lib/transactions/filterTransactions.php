@@ -93,12 +93,19 @@
       else
         $stmt->bind_param('idd', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper']);
       break;
+	case 4:
+		$category = $_POST['category'] . "%";
+		if($_POST['bindMethod'] == 'date')
+        $stmt->bind_param('isss', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $category);
+      else
+        $stmt->bind_param('idds', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $category);
+		break;
     case 5:
-    if($_POST['bindMethod'] == 'date')
-      $stmt->bind_param('issdd', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
-    else
-      $stmt->bind_param('iddss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
-    break;
+      if($_POST['bindMethod'] == 'date')
+        $stmt->bind_param('issdd', $_POST['accNum'], $_POST['datefrom'], $_POST['dateto'], $_POST['amtlower'], $_POST['amtupper']);
+      else
+        $stmt->bind_param('iddss', $_POST['accNum'], $_POST['amtlower'], $_POST['amtupper'], $_POST['datefrom'], $_POST['dateto']);
+      break;
     case 6:
       $category = $_POST['category'] . "%";
       if($_POST['bindMethod'] == 'date')

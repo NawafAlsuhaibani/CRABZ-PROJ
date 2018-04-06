@@ -124,6 +124,7 @@
                         <option value="Desc">Desc</option>
                         <option value="Asc">Asc</option>
                       </select>
+					  <select id="type1" name="type1"><option value="All">All</option></select> <!-- Nawaf-->
                     </div>
                   </div>
                   <div class="flex-row small-margin-sides">
